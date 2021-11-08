@@ -4,6 +4,15 @@
   "main": "dist/3rdweb-react.cjs.js",
   "module": "dist/3rdweb-react.esm.js",
   "types": "dist/3rdweb-react.cjs.d.ts",
-  "repository": "git@github.com:nftlabs/ui.git",
-  "license": "Apache-2.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nftlabs/ui",
+    "directory": "packages/react"
+  },
+  "homepage": "https://thirdweb.com/",
+  "license": "Apache-2.0",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false
 }
