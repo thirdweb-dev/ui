@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "dist/3rdweb-react.cjs.js",
   "module": "dist/3rdweb-react.esm.js",
+  "types": "dist/3rdweb-react.cjs.d.ts",
   "repository": "git@github.com:nftlabs/ui.git",
   "license": "Apache-2.0"
 }
