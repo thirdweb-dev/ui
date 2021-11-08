@@ -1,0 +1,31 @@
+{
+  "name": "thirdweb-ui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:nftlabs/ui.git",
+  "author": "Jonas Daniels <jonas.daniels@outlook.com>",
+  "license": "Apache-2.0",
+  "private": true,
+  "devDependencies": {
+    "@preconstruct/cli": "^2.1.5"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "preconstruct": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "postinstall": "preconstruct dev",
+    "fix": "preconstruct fix",
+    "build": "preconstruct build"
+  },
+  "dependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "typescript": "^4.4.4"
+  }
+}
