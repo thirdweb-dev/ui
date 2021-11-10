@@ -1,25 +1,7 @@
 import React, { useState } from "react";
 import { useThirdweb } from "../hooks";
 import styled from "styled-components";
-
-const Button = styled.button`
-  height: 50px;
-  background: #111111;
-  color: white;
-  padding: 0px 20px;
-  border-radius: 8px;
-  outline: none !important;
-  border: none !important;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.9;
-  }
-
-  &:active {
-    opacity: 0.85;
-  }
-`
+import { Connector } from "../connectors";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -52,16 +34,26 @@ export const ConnectWallet: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const { 
     account, 
-    activateInjected, 
-    activateMagic, 
+    connectors,
+    activate,
     deactivate 
   } = useThirdweb();
 
+  function activateConnector(connector: Connector, options?: any) {
+    if (activate) {
+      if (options) {
+        activate(connector, options);
+      } else {
+        activate(connector);
+      }
+    }
+  }
+
   return (
     <>
-      <Button onClick={() => setModal(true)}>
+      <button onClick={() => setModal(true)}>
         {account ? "Info" : "Connect Wallet"}
-      </Button>
+      </button>
       {modal && (
         <ModalOverlay>
           <Modal>
@@ -79,26 +71,48 @@ export const ConnectWallet: React.FC = () => {
             </p>
 
             Wallet Connection
+
             {account ? (
               <>
-                <Button onClick={deactivate}>
+                <button onClick={deactivate}>
                   Deactivate
-                </Button>
+                </button>
                 <p>Connected Account: {account}</p>
               </>
             ) : (
               <>
-                <Button onClick={activateInjected}>
-                  Connect Metamask
-                </Button>
-                <input
-                  placeholder="Magic Email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-                <Button onClick={activateMagic ? () => activateMagic(email) : () => {}}>
-                  Connect Magic
-                </Button>
+                {connectors.map((connector: Connector) => {
+                  if (connector === "magic") {
+                    return (
+                      <div style={{ marginTop: "8px", marginBottom: "8px" }}>
+                        <input
+                          placeholder="Magic Email"
+                          value={email}
+                          onChange={e => setEmail(e.target.value)}
+                        />
+                        <button onClick={() => activateConnector("magic", { email })}>
+                          Connect Magic
+                        </button>
+                      </div>
+                    )
+                  } else {
+                    return (
+                      <button 
+                        onClick={() => activateConnector(connector)}
+                        style={{ marginTop: "8px", marginBottom: "8px" }}
+                      >
+                        Connect&nbsp;
+                        {connector === "walletconnect" ?
+                          "Wallet Connect" 
+                        : connector === "walletlink" ?
+                          "Coinbase Wallet"
+                        : connector === "injected" ?
+                          "Metamask" 
+                        : ""}
+                      </button>
+                    )
+                  }
+                })}
               </>
             )}
           </Modal>
