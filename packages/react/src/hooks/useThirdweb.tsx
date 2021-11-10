@@ -1,13 +1,22 @@
 import React, { createContext, useContext } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { Connector, injected, createMagicConnector } from "../connectors";
+import { 
+  Connector, 
+  injectedConnector, 
+  createMagicConnector,
+  walletConnectConnector,
+  walletLinkConnector
+} from "../connectors";
 
 export type ThirdwebContextData = {
   account: string | null | undefined;
   connectors: Connector[];
-  activateInjected?: () => void;
-  activateMagic?: (email: string) => void;
+  activate?: (conenctor: Connector, options?: any) => void;
   deactivate?: () => void;
+}
+
+type ActivateOptions = {
+  email?: string;
 }
 
 const ThirdwebContext = createContext<ThirdwebContextData>({
@@ -22,19 +31,34 @@ export function useThirdweb() {
 export const ThirdwebContextProvider: React.FC<{
   connectors: Connector[]
 }> = ({ connectors, children }) => {
-  const { account, activate, deactivate } = useWeb3React();
+  const { 
+    account, 
+    activate: activateConnector, 
+    deactivate 
+  } = useWeb3React();
 
-  function activateInjected() {
-    if (connectors.includes("injected")) {
-      activate(injected);
-    }
-  }
+  function activate(connector: Connector, options?: ActivateOptions) {
+    if (connectors.includes(connector)) {
+      switch (connector) {
+        case "injected":
+          activateConnector(injectedConnector);
+          break;
+        case "magic":
+          if (!options?.email) {
+            return;
+          }
 
-  function activateMagic(email: string) {
-    if (connectors.includes("magic")) {
-      const magicConnector = createMagicConnector(email);
-      console.log(magicConnector);
-      activate(magicConnector);
+          const { email } = options;
+          const magicConnector = createMagicConnector(email);
+          activateConnector(magicConnector);
+          break;
+        case "walletconnect":
+          activateConnector(walletConnectConnector);
+          break;
+        case "walletlink":
+          activateConnector(walletLinkConnector)
+          break;
+      }
     }
   }
 
@@ -43,8 +67,7 @@ export const ThirdwebContextProvider: React.FC<{
       value={{
         account,
         connectors,
-        activateInjected,
-        activateMagic,
+        activate,
         deactivate
       }}
     >
