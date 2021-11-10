@@ -1,5 +1,8 @@
 import { InjectedConnector } from "@web3-react/injected-connector";
 
+export type Connector = 
+  | "injected"
+
 export const injected = new InjectedConnector({ supportedChainIds: [
   1, // Ethereum Mainnet
   4, // Rinkeby Testnet

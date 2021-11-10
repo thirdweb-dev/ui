@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { injected } from "../connectors";
+import { Connector, injected } from "../connectors";
 
 const ThirdwebContext = createContext({});
 
@@ -9,7 +9,7 @@ export function useThirdweb() {
 }
 
 export const ThirdwebContextProvider: React.FC<{
-  connectors: string[]
+  connectors: Connector[]
 }> = ({ connectors, children }) => {
   const { activate } = useWeb3React();
 
