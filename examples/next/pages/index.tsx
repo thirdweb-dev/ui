@@ -2,5 +2,9 @@ import React from "react";
 import { ConnectWallet } from "@3rdweb/react";
 
 export default function ExamplePage() {
-  return <ConnectWallet />;
+  return (
+    <div>
+      <ConnectWallet />
+    </div>
+  );
 }
