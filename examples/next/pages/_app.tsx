@@ -4,7 +4,7 @@ import React from "react";
 function ExampleApp({ Component, pageProps }) {
   return (
     <ThirdwebProvider 
-      connectors={["injected"]}
+      connectors={["injected", "magic"]}
     >
       <Component {...pageProps} />
     </ThirdwebProvider>

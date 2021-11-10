@@ -49,7 +49,13 @@ const Modal = styled.div`
 
 export const ConnectWallet: React.FC = () => {
   const [modal, setModal] = useState(false);
-  const { account, activateInjected, deactivate } = useThirdweb();
+  const [email, setEmail] = useState<string>("");
+  const { 
+    account, 
+    activateInjected, 
+    activateMagic, 
+    deactivate 
+  } = useThirdweb();
 
   return (
     <>
@@ -81,9 +87,19 @@ export const ConnectWallet: React.FC = () => {
                 <p>Connected Account: {account}</p>
               </>
             ) : (
-              <Button onClick={activateInjected}>
-                Connect Metamask
-              </Button>
+              <>
+                <Button onClick={activateInjected}>
+                  Connect Metamask
+                </Button>
+                <input
+                  placeholder="Magic Email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                />
+                <Button onClick={activateMagic ? () => activateMagic(email) : () => {}}>
+                  Connect Magic
+                </Button>
+              </>
             )}
           </Modal>
         </ModalOverlay>
