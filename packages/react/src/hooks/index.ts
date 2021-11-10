@@ -1,1 +1,1 @@
-export * from "./useThirdweb";
+export { useThirdweb } from "./useThirdweb";
