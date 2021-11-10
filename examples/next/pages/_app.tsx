@@ -1,11 +1,13 @@
-import { ThirdWebProvider } from "@3rdweb/react";
+import { ThirdwebProvider } from "@3rdweb/react";
 import React from "react";
 
 function ExampleApp({ Component, pageProps }) {
   return (
-    <ThirdWebProvider>
+    <ThirdwebProvider 
+      connectors={["injected"]}
+    >
       <Component {...pageProps} />
-    </ThirdWebProvider>
+    </ThirdwebProvider>
   );
 }
 
