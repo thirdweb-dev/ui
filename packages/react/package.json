@@ -14,5 +14,18 @@
   "files": [
     "dist"
   ],
-  "sideEffects": false
+  "sideEffects": false,
+  "peerDependencies": {
+    "react": ">=16.8 || ^17 || ^18"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.34",
+    "react": "^17.0.2"
+  },
+  "dependencies": {
+    "@web3-react/core": "^6.1.9",
+    "tiny-invariant": "^1.2.0",
+    "@ethersproject/providers": "^5.5.0",
+    "ethers": "^5.5.1"
+  }
 }

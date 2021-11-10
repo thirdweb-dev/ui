@@ -14,7 +14,8 @@
     "@preconstruct/cli": "^2.1.5"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "preconstruct": {
     "packages": [
@@ -24,7 +25,8 @@
   "scripts": {
     "postinstall": "preconstruct dev",
     "fix": "preconstruct fix",
-    "build": "preconstruct build"
+    "build": "preconstruct build",
+    "dev": "preconstruct dev"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",
