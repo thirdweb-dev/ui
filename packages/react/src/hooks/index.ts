@@ -1,1 +1,1 @@
-export * from "./useConnectWallet";
+export * from "./useThirdweb";
