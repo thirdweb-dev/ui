@@ -20,7 +20,7 @@ export const injected = new InjectedConnector({ supportedChainIds: [
 
 export const createMagicConnector = (email: string) => {
   return new MagicConnector({
-    apiKey: process.env.MAGIC_API_KEY as string,
+    apiKey: process.env.NEXT_PUBLIC_MAGIC_API_KEY as string,
     chainId: 4, // Mumbai Testnet
     email: email
   })
