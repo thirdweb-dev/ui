@@ -1,37 +1,22 @@
 import React, { useState } from "react";
-// import { Button } from "@chakra-ui/react";
+import { 
+  Input,
+  Flex,
+  Text,
+  Button, 
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  ModalCloseButton,
+  ModalBody,
+  ModalHeader
+} from "@chakra-ui/react";
 import { useWeb3 } from "../hooks";
-import styled from "styled-components";
 import { ConnectorType } from "..";
 
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-`
-
-const Modal = styled.div`
-  padding: 20px !important;
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  color: black;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-  position: absolute;
-`
-
 export const ConnectWallet: React.FC = () => {
-  const [modal, setModal] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [email, setEmail] = useState<string>("");
   const { 
     address, 
@@ -50,55 +35,49 @@ export const ConnectWallet: React.FC = () => {
 
   return (
     <>
-      <button onClick={() => setModal(true)}>
+      <Button onClick={onOpen}>
         {address ? "Info" : "Connect Wallet"}
-      </button>
-      {modal && (
-        <ModalOverlay>
-          <Modal>
-            <p 
-              onClick={() => setModal(false)}
-              style={{
-                position: "absolute",
-                top: "8px",
-                right: "8px",
-                color: "black",
-                cursor: "pointer"
-              }}
-            >
-              &times;
-            </p>
-
-            Wallet Connection
-
+      </Button>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+        <ModalOverlay />
+        <ModalContent alignItems="center">
+          <ModalCloseButton />
+          <ModalHeader>
+            Connect Wallet
+          </ModalHeader>
+          <ModalBody>
             {address ? (
-              <>
-                <button onClick={disconnectWallet}>
-                  Deactivate
-                </button>
-                <p>Connected Account: {address}</p>
-              </>
+              <Flex direction="column" alignItems="center">
+                <Text>{address}</Text>
+                <Button mt="16px" onClick={disconnectWallet}>Deactivate</Button>
+              </Flex>
             ) : (
-              <>
-                {connectors.map((connectorType: ConnectorType) => {
+              <Flex direction="column" alignItems="center">
+                {connectors.map((connectorType: ConnectorType, index) => {
                   if (connectorType === "magic") {
                     return (
-                      <div style={{ marginTop: "8px", marginBottom: "8px" }}>
-                        <input
+                      <Flex marginY="8px" key={index}>
+                        <Input
                           placeholder="Magic Email"
                           value={email}
                           onChange={e => setEmail(e.target.value)}
+                          borderRadius="8px 0px 0px 8px"
                         />
-                        <button onClick={() => activateConnector("magic", { email })}>
+                        <Button 
+                          onClick={() => activateConnector("magic", { email })}
+                          borderRadius="0px 8px 8px 0px"
+                          minWidth="160px"
+                        >
                           Connect Magic
-                        </button>
-                      </div>
+                        </Button>
+                      </Flex>
                     )
                   } else {
                     return (
-                      <button 
+                      <Button
+                        key={index}
                         onClick={() => activateConnector(connectorType)}
-                        style={{ marginTop: "8px", marginBottom: "8px" }}
+                        marginY="8px"
                       >
                         Connect&nbsp;
                         {connectorType === "walletconnect" ?
@@ -108,15 +87,15 @@ export const ConnectWallet: React.FC = () => {
                         : connectorType === "injected" ?
                           "Metamask" 
                         : ""}
-                      </button>
+                      </Button>
                     )
                   }
                 })}
-              </>
+              </Flex>
             )}
-          </Modal>
-        </ModalOverlay>
-      )}
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   );
 };
