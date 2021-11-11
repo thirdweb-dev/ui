@@ -1,1 +1,3 @@
-export { useThirdweb } from "./useThirdweb";
+export * from "./useConnectWallet";
+export * from "./useSwitchNetwork";
+export * from "./useWeb3";
