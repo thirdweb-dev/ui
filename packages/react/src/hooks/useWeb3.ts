@@ -16,20 +16,19 @@ export interface Web3ContextInterface {
 }
 
 export function useWeb3(): Web3ContextInterface {
-  const { connectors } = useThirdwebContext();
-  const web3Ctx = useWeb3React<Web3Provider>();
+  const web3Context = useWeb3React<Web3Provider>();
+  const { library, account, error, chainId, deactivate } = web3Context;
+
   const connect = useConnectWallet();
-  return useMemo(
-    () => ({
-      provider: web3Ctx.library,
-      //force no null, just keep it to undefined or string
-      account: web3Ctx.account || undefined,
-      error: web3Ctx.error,
-      connectedChainId: web3Ctx.chainId,
-      connectWallet: connect,
-      disconnectWallet: web3Ctx.deactivate,
-      enabledConnectors: Object.keys(connectors) as ConnectorType[],
-    }),
-    [web3Ctx, connect, connectors],
-  );
+  const { connectors } = useThirdwebContext();
+
+  return useMemo(() => ({
+    provider: library,
+    account: account || undefined, // Force no null account
+    error: error,
+    connectedChainId: chainId,
+    connectWallet: connect,
+    disconnectWallet: deactivate,
+    enabledConnectors: Object.keys(connectors) as ConnectorType[],
+  }), [web3Context, connect, connectors]);
 }

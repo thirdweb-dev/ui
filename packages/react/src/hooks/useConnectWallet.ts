@@ -8,22 +8,10 @@ import {
 } from "../components/Provider";
 
 export type ConnectorActivateOptions = {
-  /**
-   * basically metamask
-   */
-  injected: undefined;
-  /**
-   * magic.link
-   */
-  magic: { email: string };
-  /**
-   * most mobile wallets
-   */
-  walletconnect: undefined;
-  /**
-   * coinbase wallet
-   */
-  walletlink: undefined;
+  injected: undefined; // MetaMask
+  magic: { email: string }; // Magic Link
+  walletconnect: undefined; // Mobile Wallets
+  walletlink: undefined; // Coinbase Wallet
 };
 
 export function useConnectWallet() {
@@ -35,53 +23,35 @@ export function useConnectWallet() {
       connectorType: TConnectorType,
       connectOptions?: ConnectorActivateOptions[TConnectorType],
     ) => {
-      invariant(
-        connectors[connectorType],
-        `Invalid connect() call for connector: ${connectorType}. It is not defined in on the <ThirdwebContext>.`,
-      );
+      invariant(connectors[connectorType], `
+        Invalid connect() call for connector: ${connectorType}. 
+        This connector is not defined on the <ThirdwebContext>.
+      `);
 
       switch (connectorType) {
         case "injected": {
-          const { InjectedConnector } = await import(
-            "@web3-react/injected-connector"
-          );
-          const connectorOptions = connectors[
-            connectorType
-          ] as ConnectorOptions["injected"];
+          const { InjectedConnector } = await import("@web3-react/injected-connector");
+          const connectorOptions = connectors[connectorType] as ConnectorOptions["injected"];
           return await activate(new InjectedConnector(connectorOptions));
         }
         case "magic": {
-          const { MagicConnector } = await import(
-            "@web3-react/magic-connector"
-          );
+          const { MagicConnector } = await import("@web3-react/magic-connector");
           const { email } = connectOptions as ConnectorActivateOptions["magic"];
-          const connectorOptions = connectors[
-            connectorType
-          ] as ConnectorOptions["magic"];
-          return await activate(
-            new MagicConnector({ ...connectorOptions, email }),
-          );
+          const connectorOptions = connectors[connectorType] as ConnectorOptions["magic"];
+          return await activate(new MagicConnector({ ...connectorOptions, email }));
         }
         case "walletlink": {
-          const { WalletLinkConnector } = await import(
-            "@web3-react/walletlink-connector"
-          );
-          const connectorOptions = connectors[
-            connectorType
-          ] as ConnectorOptions["walletlink"];
+          const { WalletLinkConnector } = await import("@web3-react/walletlink-connector");
+          const connectorOptions = connectors[connectorType] as ConnectorOptions["walletlink"];
           return await activate(new WalletLinkConnector(connectorOptions));
         }
         case "walletconnect": {
-          const { WalletConnectConnector } = await import(
-            "@web3-react/walletconnect-connector"
-          );
-          const connectorOptions = connectors[
-            connectorType
-          ] as ConnectorOptions["walletlink"];
+          const { WalletConnectConnector } = await import("@web3-react/walletconnect-connector");
+          const connectorOptions = connectors[connectorType] as ConnectorOptions["walletlink"];
           return await activate(new WalletConnectConnector(connectorOptions));
         }
         default:
-          throw new Error("unsupported connector" + connectorType);
+          throw new Error("Unsupported connector: " + connectorType);
       }
     },
     [connectors, activate],

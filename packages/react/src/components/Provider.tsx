@@ -5,15 +5,11 @@ import { WalletConnectConnectorArguments } from "@web3-react/walletconnect-conne
 import React, { createContext, useContext } from "react";
 import invariant from "tiny-invariant";
 
-//connector types
-//from magic-conector
 interface MagicConnectorArguments {
   apiKey: string;
   chainId: number;
-  //email has to be passed in from input
-  // email: string;
 }
-// from walletlink-connector
+
 interface WalletLinkConnectorArguments {
   url: string;
   appName: string;
@@ -23,40 +19,25 @@ interface WalletLinkConnectorArguments {
 }
 
 export type ConnectorOptions = {
-  /**
-   * basically metamask
-   */
-  injected: AbstractConnectorArguments;
-  /**
-   * magic.link
-   */
-  magic: MagicConnectorArguments;
-  /**
-   * most mobile wallets
-   */
-  walletconnect: WalletConnectConnectorArguments;
-  /**
-   * coinbase wallet
-   */
-  walletlink: WalletLinkConnectorArguments;
+  injected: AbstractConnectorArguments; // MetaMask
+  magic: MagicConnectorArguments; // Magic Link
+  walletconnect: WalletConnectConnectorArguments; // Mobile Wallets
+  walletlink: WalletLinkConnectorArguments; // Coinbase Wallet
 };
 
 export type ConnectorType = keyof ConnectorOptions;
 
 export interface AddEthereumChainParameter {
-  // A 0x-prefixed hexadecimal string
-  chainId: string;
+  chainId: string; // A 0x-prefixed hexadecimal string
   chainName: string;
   nativeCurrency: {
     name: string;
-    // 2-6 characters long
-    symbol: string;
+    symbol: string; // 2-6 characters long
     decimals: 18;
   };
   rpcUrls: string[];
   blockExplorerUrls?: string[];
-  // Currently ignored.
-  iconUrls?: string[];
+  iconUrls?: string[]; // Currently ignored
 }
 
 export interface ThirdwebContext {
@@ -75,12 +56,12 @@ const ThirdwebContext = createContext<ThirdwebContext>({
 });
 
 export function useThirdwebContext(): ThirdwebContext {
-  const ctx = useContext(ThirdwebContext);
-  invariant(
-    ctx._inProvider,
-    "Attempting to call useThirdwebContext from outside <ThirdwebProvider>, did you forget to wrap your application in a <ThirdwebProvider>?",
-  );
-  return ctx;
+  const context = useContext(ThirdwebContext);
+  invariant(context._inProvider, `
+    Attempting to call useThirdwebContext from outside <ThirdwebProvider>, 
+    did you forget to wrap your application in a <ThirdwebProvider>? 
+  `);
+  return context;
 }
 
 interface ThirdwebProviderProps {
@@ -94,10 +75,16 @@ export const ThirdwebProvider: React.FC<ThirdwebProviderProps> = ({
   children,
 }) => {
   return (
-    <ThirdwebContext.Provider
-      value={{ _inProvider: true, connectors, chainAddConfig }}
+    <ThirdwebContext.Provider 
+      value={{ 
+        _inProvider: true, 
+        connectors, 
+        chainAddConfig 
+      }}
     >
-      <Web3ReactProvider getLibrary={getLibrary}>{children}</Web3ReactProvider>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        {children}
+      </Web3ReactProvider>
     </ThirdwebContext.Provider>
   );
 };
