@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@chakra-ui/react";
+// import { Button } from "@chakra-ui/react";
 import { useWeb3 } from "../hooks";
 import styled from "styled-components";
 import { ConnectorType } from "..";
