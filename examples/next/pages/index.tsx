@@ -2,8 +2,9 @@ import { useSwitchNetwork, useWeb3 } from "@3rdweb/react";
 import React from "react";
 
 export default function ExamplePage() {
-  const { account, connectedChainId, connectWallet, error } = useWeb3();
+  const { address, chainId, connectWallet, error } = useWeb3();
   const { canAttemptSwitch, switchNetwork, switchError } = useSwitchNetwork();
+  
   return (
     <div
       style={{
@@ -16,17 +17,17 @@ export default function ExamplePage() {
       <div>
         <h2>Current status</h2>
         <div>
-          Current chainId: <pre>{connectedChainId}</pre>
+          Current chainId: <pre>{chainId}</pre>
         </div>
         <div>
           Can attempt to switch: <pre>{`${!!canAttemptSwitch}`}</pre>
         </div>
         <div>
-          Connected: <pre>{`${!!account}`}</pre>
+          Connected: <pre>{`${!!address}`}</pre>
         </div>
-        {account && (
+        {address && (
           <div>
-            Wallet Address: <pre>{account}</pre>
+            Wallet Address: <pre>{address}</pre>
           </div>
         )}
       </div>
