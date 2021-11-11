@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "@chakra-ui/react";
 import { useWeb3 } from "../hooks";
 import styled from "styled-components";
 import { ConnectorType } from "..";
@@ -33,10 +34,10 @@ export const ConnectWallet: React.FC = () => {
   const [modal, setModal] = useState(false);
   const [email, setEmail] = useState<string>("");
   const { 
-    account, 
+    address, 
     connectWallet,
     disconnectWallet,
-    enabledConnectors
+    connectors
   } = useWeb3();
 
   function activateConnector(connector: any, options?: any) {
@@ -50,7 +51,7 @@ export const ConnectWallet: React.FC = () => {
   return (
     <>
       <button onClick={() => setModal(true)}>
-        {account ? "Info" : "Connect Wallet"}
+        {address ? "Info" : "Connect Wallet"}
       </button>
       {modal && (
         <ModalOverlay>
@@ -70,16 +71,16 @@ export const ConnectWallet: React.FC = () => {
 
             Wallet Connection
 
-            {account ? (
+            {address ? (
               <>
                 <button onClick={disconnectWallet}>
                   Deactivate
                 </button>
-                <p>Connected Account: {account}</p>
+                <p>Connected Account: {address}</p>
               </>
             ) : (
               <>
-                {enabledConnectors.map((connectorType: ConnectorType) => {
+                {connectors.map((connectorType: ConnectorType) => {
                   if (connectorType === "magic") {
                     return (
                       <div style={{ marginTop: "8px", marginBottom: "8px" }}>

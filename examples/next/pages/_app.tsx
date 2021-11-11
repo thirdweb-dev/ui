@@ -1,4 +1,4 @@
-import { ThirdwebWeb3Provider } from "@3rdweb/react";
+import { ThirdwebWeb3Provider, ThirdwebThemeProvider } from "@3rdweb/react";
 import React from "react";
 
 function ExampleApp({ Component, pageProps }) {
@@ -21,7 +21,9 @@ function ExampleApp({ Component, pageProps }) {
         },
       }}
     >
-      <Component {...pageProps} />
+      <ThirdwebThemeProvider> 
+        <Component {...pageProps} />
+      </ThirdwebThemeProvider>
     </ThirdwebWeb3Provider>
   );
 }

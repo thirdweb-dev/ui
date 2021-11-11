@@ -1,4 +1,4 @@
-import { ConnectorType, useThirdwebContext } from "../components/Provider";
+import { ConnectorType, useThirdwebContext } from "../components/Web3Provider";
 import type { Provider } from "@ethersproject/abstract-provider";
 import { Web3Provider } from "@ethersproject/providers";
 import { useConnectWallet } from "./useConnectWallet";
