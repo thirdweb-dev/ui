@@ -1,9 +1,9 @@
-import { ThirdwebProvider } from "@3rdweb/react";
+import { ThirdwebWeb3Provider } from "@3rdweb/react";
 import React from "react";
 
 function ExampleApp({ Component, pageProps }) {
   return (
-    <ThirdwebProvider
+    <ThirdwebWeb3Provider
       connectors={{
         injected: { supportedChainIds: [1] },
         magic: {
@@ -22,7 +22,7 @@ function ExampleApp({ Component, pageProps }) {
       }}
     >
       <Component {...pageProps} />
-    </ThirdwebProvider>
+    </ThirdwebWeb3Provider>
   );
 }
 
