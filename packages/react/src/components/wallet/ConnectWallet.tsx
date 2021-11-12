@@ -98,90 +98,101 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
                 </>
               )}
 
-              <Stack as={Card} spacing={4}>
-                <Heading as="h4" size="sm" fontWeight="600">
-                  Connect with email
-                </Heading>
-                <Flex direction="column">
-                  <Flex>
-                    <Input 
-                      value={email}
-                      onChange={e => {
-                        setEmail(e.target.value)
-                        setError(false)
-                      }}
-                      placeholder="name@example.com"
-                      borderRadius="4px 0px 0px 4px"
-                    />
-                    <Button 
-                      borderRadius="0px 4px 4px 0px"
-                      width="120px"
-                      onClick={connectMagic}
-                    >
-                      {loading ? (
-                        <Flex>
-                          <Spinner />
-                        </Flex>
-                      ) : "Connect"}
-                    </Button>
+              {connectors.includes("magic") && (
+                <Stack as={Card} spacing={4}>
+                  <Heading as="h4" size="sm" fontWeight="600">
+                    Connect with email
+                  </Heading>
+                  <Flex direction="column">
+                    <Flex>
+                      <Input 
+                        value={email}
+                        onChange={e => {
+                          setEmail(e.target.value)
+                          setError(false)
+                        }}
+                        placeholder="name@example.com"
+                        borderRadius="4px 0px 0px 4px"
+                      />
+                      <Button 
+                        borderRadius="0px 4px 4px 0px"
+                        width="120px"
+                        onClick={connectMagic}
+                      >
+                        {loading ? (
+                          <Flex>
+                            <Spinner />
+                          </Flex>
+                        ) : "Connect"}
+                      </Button>
+                    </Flex>
+                    {error && (
+                      <Text color="red.400" fontSize="14px" mt="4px"> 
+                        Please enter a valid email.
+                      </Text>
+                    )}
                   </Flex>
-                  {error && (
-                    <Text color="red.400" fontSize="14px" mt="4px"> 
-                      Please enter a valid email.
-                    </Text>
+                </Stack>
+              )}
+
+              {connectors.some(connector => connector !== "magic") && (
+                <Stack as={Card} spacing={4}>
+                  <Heading as="h4" size="sm" fontWeight="600">
+                    Connect a{address ? " different" : ""} wallet
+                  </Heading>
+
+                  {connectors.includes("injected") && (
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      isFullWidth
+                      iconSpacing="auto"
+                      rightIcon={
+                        <AspectRatio ratio={1} w={6}>
+                          <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
+                        </AspectRatio>
+                      }
+                      onClick={() => connectWallet("injected")}
+                    >
+                      MetaMask
+                    </Button>
                   )}
-                </Flex>
-              </Stack>
 
-              <Stack as={Card} spacing={4}>
-                <Heading as="h4" size="sm" fontWeight="600">
-                  Connect a{address ? " different" : ""} wallet
-                </Heading>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  isFullWidth
-                  iconSpacing="auto"
-                  rightIcon={
-                    <AspectRatio ratio={1} w={6}>
-                      <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
-                    </AspectRatio>
-                  }
-                  onClick={() => connectWallet("injected")}
-                >
-                  MetaMask
-                </Button>
+                  {connectors.includes("walletconnect") && (
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      isFullWidth
+                      iconSpacing="auto"
+                      rightIcon={
+                        <AspectRatio ratio={1} w={6}>
+                          <Image src="https://thirdweb.com/logos/walletconnect-logo.svg" />
+                        </AspectRatio>
+                      }
+                      onClick={() => connectWallet("walletconnect")}
+                    >
+                      WalletConnect
+                    </Button>
+                  )}
 
-                <Button
-                  size="lg"
-                  variant="outline"
-                  isFullWidth
-                  iconSpacing="auto"
-                  rightIcon={
-                    <AspectRatio ratio={1} w={6}>
-                      <Image src="https://thirdweb.com/logos/walletconnect-logo.svg" />
-                    </AspectRatio>
-                  }
-                  onClick={() => connectWallet("walletconnect")}
-                >
-                  WalletConnect
-                </Button>
-
-                <Button
-                  size="lg"
-                  variant="outline"
-                  isFullWidth
-                  iconSpacing="auto"
-                  rightIcon={
-                    <AspectRatio ratio={1} w={6}>
-                      <Image src="https://thirdweb.com/logos/coinbase-wallet-logo.svg" />
-                    </AspectRatio>
-                  }
-                  onClick={() => connectWallet("walletlink")}
-                >
-                  Coinbase Wallet
-                </Button>
-              </Stack>
+                  {connectors.includes("walletlink") && (
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      isFullWidth
+                      iconSpacing="auto"
+                      rightIcon={
+                        <AspectRatio ratio={1} w={6}>
+                          <Image src="https://thirdweb.com/logos/coinbase-wallet-logo.svg" />
+                        </AspectRatio>
+                      }
+                      onClick={() => connectWallet("walletlink")}
+                    >
+                      Coinbase Wallet
+                    </Button>
+                  )}
+                </Stack>
+              )}
             </Stack>
           </ModalBody>
         </ModalContent>
