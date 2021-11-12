@@ -1,5 +1,5 @@
-import { ConnectWallet } from "@3rdweb/react";
 import { Text, Flex, Heading, Link } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 export default function() {
   return (
@@ -41,24 +41,54 @@ export default function() {
           Welcome to the Thirdweb Component Library. This is a toolbox of all the components
           you'll need to start easily integrating web3 into your apps.
           <br /><br />
-          You can view and interact with some of our components below.
+          You can learn more about our components by clicking on the links below.
         </Text>
 
-        <Text mt="64px" fontSize="32px" fontWeight="bold">
-          Web3 Connector
-        </Text>
-        <Text 
-          fontSize="16px"
-          fontWeight="medium" 
-          color="#999" 
-          width="540px"
-          textAlign="center"
-          mb="32px"
-        >
-          Our web3 connector completely handles wallet connection and network switching and
-          comes with a context wrapper for your app.
-        </Text>
-        <ConnectWallet />
+        <NextLink href="/connect">
+          <Flex
+            mt="64px"
+            width="100%"
+            align="center"
+            direction="column"
+            borderRadius="16px"
+            padding="20px"
+            border="1px solid #EAEAEA"
+            cursor="pointer"
+            _hover={{
+              bg: "#FAFAFA"
+            }}
+          >
+            <Text fontSize="20px" fontWeight="bold">
+              Web3 Connector
+            </Text>
+            <Text fontSize="14px" mt="8px" color="#999" textAlign="center">
+              This component completely handles wallet connection and network switching.
+            </Text>
+          </Flex>
+        </NextLink>
+
+        <NextLink href="/hooks">
+          <Flex
+            width="100%"
+            mt="24px"
+            align="center"
+            direction="column"
+            borderRadius="16px"
+            padding="20px"
+            border="1px solid #EAEAEA"
+            cursor="pointer"
+            _hover={{
+              bg: "#FAFAFA"
+            }}
+          >
+            <Text fontSize="20px" fontWeight="bold">
+              Web3 Connection Hooks
+            </Text>
+            <Text fontSize="14px" mt="8px" color="#999" textAlign="center">
+              These hooks let you make your own custom web3 connection setup.
+            </Text>
+          </Flex>
+        </NextLink>
       </Flex>
     </Flex>
   )
