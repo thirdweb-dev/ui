@@ -19,25 +19,32 @@ interface WalletLinkConnectorArguments {
 }
 
 export type ConnectorOptions = {
-  injected: AbstractConnectorArguments; // MetaMask
-  magic: MagicConnectorArguments; // Magic Link
-  walletconnect: WalletConnectConnectorArguments; // Mobile Wallets
-  walletlink: WalletLinkConnectorArguments; // Coinbase Wallet
+  // MetaMask
+  injected: AbstractConnectorArguments;
+  // Magic Link
+  magic: MagicConnectorArguments;
+  // Mobile Wallets
+  walletconnect: WalletConnectConnectorArguments;
+  // Coinbase Wallet
+  walletlink: WalletLinkConnectorArguments;
 };
 
 export type ConnectorType = keyof ConnectorOptions;
 
 export interface AddEthereumChainParameter {
-  chainId: string; // A 0x-prefixed hexadecimal string
+  // A 0x-prefixed hexadecimal string
+  chainId: string;
   chainName: string;
   nativeCurrency: {
     name: string;
-    symbol: string; // 2-6 characters long
+    // 2-6 characters long
+    symbol: string;
     decimals: 18;
   };
   rpcUrls: string[];
   blockExplorerUrls?: string[];
-  iconUrls?: string[]; // Currently ignored
+  // Currently ignored
+  iconUrls?: string[];
 }
 
 export interface ThirdwebContext {
@@ -57,32 +64,29 @@ const ThirdwebContext = createContext<ThirdwebContext>({
 
 export function useThirdwebContext(): ThirdwebContext {
   const context = useContext(ThirdwebContext);
-  invariant(context._inProvider, `
+  invariant(
+    context._inProvider,
+    `
     Attempting to call useThirdwebContext from outside <ThirdwebProvider>, 
     did you forget to wrap your application in a <ThirdwebProvider>? 
-  `);
+  `,
+  );
   return context;
 }
 
 export const ThirdwebWeb3Provider: React.FC<{
   connectors: ThirdwebContext["connectors"];
   chainAddConfig?: ThirdwebContext["chainAddConfig"];
-}> = ({
-  connectors,
-  chainAddConfig,
-  children,
-}) => {
+}> = ({ connectors, chainAddConfig, children }) => {
   return (
-    <ThirdwebContext.Provider 
-      value={{ 
-        _inProvider: true, 
-        connectors, 
-        chainAddConfig 
+    <ThirdwebContext.Provider
+      value={{
+        _inProvider: true,
+        connectors,
+        chainAddConfig,
       }}
     >
-      <Web3ReactProvider getLibrary={getLibrary}>
-        {children}
-      </Web3ReactProvider>
+      <Web3ReactProvider getLibrary={getLibrary}>{children}</Web3ReactProvider>
     </ThirdwebContext.Provider>
   );
 };

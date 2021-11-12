@@ -1,14 +1,9 @@
-import { Text, Flex, Heading, Link } from "@chakra-ui/react";
+import { Flex, Heading, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-export default function() {
+export default function () {
   return (
-    <Flex
-      width="100vw"
-      height="100vh"
-      align="center"
-      justify="center"
-    >
+    <Flex width="100vw" height="100vh" align="center" justify="center">
       <Flex direction="column" align="center">
         <Heading
           mt="0px"
@@ -17,31 +12,34 @@ export default function() {
           textAlign="center"
           fontSize="4rem"
         >
-          <Link 
+          <Link
             target="_blank"
             href="https://thirdweb.com"
             color="#0070f3"
             _hover={{
-              textDecoration: "underline"
+              textDecoration: "underline",
             }}
           >
             Thirdweb
-          </Link> 
+          </Link>
           <br />
           Component Library
         </Heading>
 
-        <Text 
+        <Text
           fontSize="16px"
-          fontWeight="medium" 
-          color="#999" 
+          fontWeight="medium"
+          color="#999"
           width="540px"
           textAlign="center"
         >
-          Welcome to the Thirdweb Component Library. This is a toolbox of all the components
-          you'll need to start easily integrating web3 into your apps.
-          <br /><br />
-          You can learn more about our components by clicking on the links below.
+          Welcome to the Thirdweb Component Library. This is a toolbox of all
+          the components you'll need to start easily integrating web3 into your
+          apps.
+          <br />
+          <br />
+          You can learn more about our components by clicking on the links
+          below.
         </Text>
 
         <NextLink href="/connect">
@@ -55,14 +53,15 @@ export default function() {
             border="1px solid #EAEAEA"
             cursor="pointer"
             _hover={{
-              bg: "#FAFAFA"
+              bg: "#FAFAFA",
             }}
           >
             <Text fontSize="20px" fontWeight="bold">
               Web3 Connector
             </Text>
             <Text fontSize="14px" mt="8px" color="#999" textAlign="center">
-              This component completely handles wallet connection and network switching.
+              This component completely handles wallet connection and network
+              switching.
             </Text>
           </Flex>
         </NextLink>
@@ -78,7 +77,7 @@ export default function() {
             border="1px solid #EAEAEA"
             cursor="pointer"
             _hover={{
-              bg: "#FAFAFA"
+              bg: "#FAFAFA",
             }}
           >
             <Text fontSize="20px" fontWeight="bold">
@@ -91,5 +90,5 @@ export default function() {
         </NextLink>
       </Flex>
     </Flex>
-  )
+  );
 }

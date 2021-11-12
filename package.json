@@ -26,13 +26,23 @@
     "postinstall": "preconstruct dev",
     "fix": "preconstruct fix",
     "build": "preconstruct build",
-    "dev": "preconstruct dev"
+    "dev": "preconstruct dev",
+    "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "eslint": "^7",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-inclusive-language": "^2.1.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-tsdoc": "^0.2.14",
     "prettier": "^2.4.1",
     "typescript": "^4.4.4"
   },

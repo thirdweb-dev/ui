@@ -1,26 +1,26 @@
-import React, { useState, useMemo } from "react";
-import { 
+import { ButtonProps } from "@chakra-ui/button";
+import {
+  AspectRatio,
+  Button,
   Flex,
   Heading,
-  Text, 
-  Stack,
-  AspectRatio,
   Image,
-  Button, 
   Input,
-  useDisclosure,
-  Spinner,
   Modal,
-  ModalContent,
-  ModalOverlay,
-  ModalCloseButton,
   ModalBody,
-  ModalHeader
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Spinner,
+  Stack,
+  Text,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { ButtonProps } from "@chakra-ui/button";
+import React, { useMemo, useState } from "react";
 import { useWeb3 } from "../../hooks";
-import { AddressCopyButton } from "./AddressCopyButton";
 import { Card } from "../shared/Card";
+import { AddressCopyButton } from "./AddressCopyButton";
 import { ConnectButton } from "./ConnectButton";
 
 export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
@@ -28,20 +28,16 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const { 
-    address, 
-    provider,
-    connectWallet,
-    disconnectWallet,
-    connectors
-  } = useWeb3();
+  const { address, provider, connectWallet, disconnectWallet, connectors } =
+    useWeb3();
 
   const activeProvider = useMemo(() => {
     return provider?.provider;
   }, [provider?.provider]);
 
   function isEmailValid() {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   }
 
@@ -49,7 +45,7 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
     if (isEmailValid()) {
       setEmail("");
       setLoading(true);
-      await connectWallet("magic", { email })
+      await connectWallet("magic", { email });
       setLoading(false);
     } else {
       setError(true);
@@ -77,9 +73,9 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
                     </Heading>
                     <Flex align="center">
                       <Flex px={2} direction="column" align="start">
-                        <AddressCopyButton 
-                          variant="outline" 
-                          address={address} 
+                        <AddressCopyButton
+                          variant="outline"
+                          address={address}
                         />
                       </Flex>
 
@@ -105,16 +101,16 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
                   </Heading>
                   <Flex direction="column">
                     <Flex>
-                      <Input 
+                      <Input
                         value={email}
-                        onChange={e => {
-                          setEmail(e.target.value)
-                          setError(false)
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          setError(false);
                         }}
                         placeholder="name@example.com"
                         borderRadius="4px 0px 0px 4px"
                       />
-                      <Button 
+                      <Button
                         borderRadius="0px 4px 4px 0px"
                         width="120px"
                         onClick={connectMagic}
@@ -123,11 +119,13 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
                           <Flex>
                             <Spinner />
                           </Flex>
-                        ) : "Connect"}
+                        ) : (
+                          "Connect"
+                        )}
                       </Button>
                     </Flex>
                     {error && (
-                      <Text color="red.400" fontSize="14px" mt="4px"> 
+                      <Text color="red.400" fontSize="14px" mt="4px">
                         Please enter a valid email.
                       </Text>
                     )}
@@ -135,7 +133,7 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
                 </Stack>
               )}
 
-              {connectors.some(connector => connector !== "magic") && (
+              {connectors.some((connector) => connector !== "magic") && (
                 <Stack as={Card} spacing={4}>
                   <Heading as="h4" size="sm" fontWeight="600">
                     Connect a{address ? " different" : ""} wallet

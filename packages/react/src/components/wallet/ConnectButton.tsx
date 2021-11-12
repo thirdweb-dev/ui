@@ -2,15 +2,12 @@ import { Icon } from "@chakra-ui/icons";
 import { Button, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import { IoWalletOutline } from "react-icons/io5";
-import { useWeb3 } from "../..";
+import { useWeb3 } from "../../hooks/useWeb3";
 import { shortenAddress } from "../../utils/shortenAddress";
 
 export const ConnectButton: React.FC<{
   onOpen: () => void;
-}> = ({
-  onOpen,
-  ...props
-}) => {
+}> = ({ onOpen, ...props }) => {
   const { address } = useWeb3();
 
   return (

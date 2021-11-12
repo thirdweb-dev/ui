@@ -13,44 +13,53 @@ export function useSwitchNetwork() {
     return !!library?.provider.request;
   }, [library?.provider.request]);
 
-  const switchNetwork = useCallback(async (newChainId: number) => {
-    if (!library?.provider.request) {
-      setSwitchError(new Error("No provider available to switch"));
-      return;
-    }
-
-    setSwitchError(null);
-    if (newChainId === chainId) return;
-
-    setIsSwitching(true);
-    const chainHex = `0x${newChainId.toString(16)}`;
-    try {
-      await library?.provider.request({
-        method: "wallet_switchEthereumChain",
-        params: [{ chainId: chainHex }],
-      });
-    } catch (switchError) {
-      if ((switchError as any).code === 4902 && chainAddConfig && chainAddConfig[newChainId]) {
-        try {
-          await library?.provider.request({
-            method: "wallet_addEthereumChain",
-            params: [chainAddConfig[newChainId]],
-          });
-        } catch (addError) {
-          setSwitchError(addError as Error);
-        }
-      } else {
-        setSwitchError(switchError as Error);
+  const switchNetwork = useCallback(
+    async (newChainId: number) => {
+      if (!library?.provider.request) {
+        setSwitchError(new Error("No provider available to switch"));
+        return;
       }
-    } finally {
-      setIsSwitching(false);
-    }
-  }, [chainAddConfig, library, chainId]);
 
-  return { 
-    switchNetwork, 
+      setSwitchError(null);
+      if (newChainId === chainId) {
+        return;
+      }
+
+      setIsSwitching(true);
+      const chainHex = `0x${newChainId.toString(16)}`;
+      try {
+        await library?.provider.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: chainHex }],
+        });
+      } catch (_switchError) {
+        if (
+          (_switchError as any).code === 4902 &&
+          chainAddConfig &&
+          chainAddConfig[newChainId]
+        ) {
+          try {
+            await library?.provider.request({
+              method: "wallet_addEthereumChain",
+              params: [chainAddConfig[newChainId]],
+            });
+          } catch (addError) {
+            setSwitchError(addError as Error);
+          }
+        } else {
+          setSwitchError(_switchError as Error);
+        }
+      } finally {
+        setIsSwitching(false);
+      }
+    },
+    [chainAddConfig, library, chainId],
+  );
+
+  return {
+    switchNetwork,
     canAttemptSwitch,
-    isSwitching, 
-    switchError 
+    isSwitching,
+    switchError,
   };
 }

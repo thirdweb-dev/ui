@@ -1,5 +1,5 @@
-import React from "react";
 import { Box, BoxProps } from "@chakra-ui/react";
+import React from "react";
 
 type DefaultedBoxProps = Pick<
   BoxProps,
