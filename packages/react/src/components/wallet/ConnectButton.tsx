@@ -18,7 +18,7 @@ export const ConnectButton: React.FC<{
       hasArrow
       label={
         address
-          ? "Manage connected wallet"
+          ? "Manage your connected wallet"
           : "Connect your wallet to get started"
       }
     >
