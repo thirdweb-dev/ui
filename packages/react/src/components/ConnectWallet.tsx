@@ -64,7 +64,10 @@ export const ConnectWallet: React.FC = () => {
                     </Heading>
                     <Flex align="center">
                       <Flex px={2} direction="column" align="start">
-                        <AddressCopyButton variant="outline" address={address} />
+                        <AddressCopyButton 
+                          variant="outline" 
+                          address={address} 
+                        />
                       </Flex>
 
                       <Button
@@ -92,7 +95,7 @@ export const ConnectWallet: React.FC = () => {
                   iconSpacing="auto"
                   rightIcon={
                     <AspectRatio ratio={1} w={6}>
-                      <Image src="/logos/metamask-fox.svg" />
+                      <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
                     </AspectRatio>
                   }
                   onClick={() => activateConnector("injected")}
@@ -107,7 +110,7 @@ export const ConnectWallet: React.FC = () => {
                   iconSpacing="auto"
                   rightIcon={
                     <AspectRatio ratio={1} w={6}>
-                      <Image src="/logos/walletconnect-logo.svg" />
+                      <Image src="https://thirdweb.com/logos/walletconnect-logo.svg" />
                     </AspectRatio>
                   }
                   onClick={() => activateConnector("walletconnect")}
@@ -122,7 +125,7 @@ export const ConnectWallet: React.FC = () => {
                   iconSpacing="auto"
                   rightIcon={
                     <AspectRatio ratio={1} w={6}>
-                      <Image src="/logos/coinbase-wallet-logo.svg" />
+                      <Image src="https://thirdweb.com/logos/coinbase-wallet-logo.svg" />
                     </AspectRatio>
                   }
                   onClick={() => activateConnector("walletlink")}

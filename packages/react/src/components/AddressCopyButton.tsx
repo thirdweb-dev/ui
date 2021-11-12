@@ -24,6 +24,10 @@ export const AddressCopyButton: React.FC<IAddressCopyButton> = ({
   const { onCopy } = useClipboard(address || "");
   const toast = useToast();
 
+  function shortenAddress(str: string) {
+    return str.substring(0, 6) + '...' + str.substring(str.length - 4)
+  }
+
   const defaultProps: ButtonGroupProps = {
     flexGrow: 0,
     variant: "solid",
@@ -56,7 +60,7 @@ export const AddressCopyButton: React.FC<IAddressCopyButton> = ({
             icon={<Icon as={IoCopy} />}
           />
         )}
-        <Button>{address}</Button>
+        <Button>{address && shortenAddress(address)}</Button>
       </ButtonGroup>
     </Tooltip>
   );
