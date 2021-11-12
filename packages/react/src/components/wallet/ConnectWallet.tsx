@@ -17,12 +17,13 @@ import {
   ModalBody,
   ModalHeader
 } from "@chakra-ui/react";
+import { ButtonProps } from "@chakra-ui/button";
 import { useWeb3 } from "../../hooks";
 import { AddressCopyButton } from "./AddressCopyButton";
 import { Card } from "../shared/Card";
 import { ConnectButton } from "./ConnectButton";
 
-export const ConnectWallet: React.FC = ({ ...props }) => {
+export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
