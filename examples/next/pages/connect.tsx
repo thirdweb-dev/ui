@@ -2,16 +2,16 @@ import { Flex, Text } from "@chakra-ui/react";
 import { ConnectWallet } from "@3rdweb/react";
 import React from "react";
 
-export default function ExamplePage() {
+export default function Connect() {
   return (
     <Flex
       direction="column"
       width="100vw"
       height="100vh"
       align="center"
-      padding="24px"
+      padding="40px"
     >
-      <Text mt="64px" fontSize="32px" fontWeight="bold">
+      <Text fontSize="32px" fontWeight="bold">
         Web3 Connector
       </Text>
       <Text 
