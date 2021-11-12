@@ -1,5 +1,4 @@
 import { ConnectorType, useThirdwebContext } from "../components/Web3Provider";
-import type { Provider } from "@ethersproject/abstract-provider";
 import { Web3Provider } from "@ethersproject/providers";
 import { useConnectWallet } from "./useConnectWallet";
 import { useWeb3React } from "@web3-react/core";
@@ -9,7 +8,7 @@ import { useSwitchNetwork } from ".";
 export interface Web3ContextInterface {
   error?: Error;
   chainId?: number;
-  provider?: Provider;
+  provider?: Web3Provider;
   address?: string;
   connectWallet: ReturnType<typeof useConnectWallet>;
   disconnectWallet: () => void;
