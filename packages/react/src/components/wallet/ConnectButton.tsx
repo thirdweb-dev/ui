@@ -1,5 +1,5 @@
 import { Icon } from "@chakra-ui/icons";
-import { Button, ButtonProps, Tooltip } from "@chakra-ui/react";
+import { Button, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import { IoWalletOutline } from "react-icons/io5";
 import { useWeb3 } from "../..";
@@ -9,7 +9,7 @@ export const ConnectButton: React.FC<{
   onOpen: () => void;
 }> = ({
   onOpen,
-  ...restProps
+  ...props
 }) => {
   const { address } = useWeb3();
 
@@ -24,13 +24,11 @@ export const ConnectButton: React.FC<{
     >
       <Button
         px={6}
-        borderRadius="full"
-        colorScheme="primary"
-        variant="outline"
+        borderRadius="8px"
         leftIcon={<Icon mt="-1px" as={IoWalletOutline}></Icon>}
         onClick={onOpen}
         iconSpacing={3}
-        {...restProps}
+        {...props}
       >
         {address ? shortenAddress(address) : "Connect Wallet"}
       </Button>

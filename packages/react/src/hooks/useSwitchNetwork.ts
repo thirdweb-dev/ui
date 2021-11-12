@@ -1,7 +1,7 @@
 import { Web3Provider } from "@ethersproject/providers";
 import { useWeb3React } from "@web3-react/core";
 import { useCallback, useMemo, useState } from "react";
-import { useThirdwebContext } from "../components/Web3Provider";
+import { useThirdwebContext } from "../components/providers/Web3Provider";
 
 export function useSwitchNetwork() {
   const { chainAddConfig } = useThirdwebContext();

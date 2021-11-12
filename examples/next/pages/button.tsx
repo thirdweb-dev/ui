@@ -3,6 +3,14 @@ import React from "react";
 
 export default function ExamplePage() {
   return (
-    <ConnectWallet />
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "100vw",
+      height: "100vh"
+    }}>
+      <ConnectWallet />
+    </div>
   );
 }

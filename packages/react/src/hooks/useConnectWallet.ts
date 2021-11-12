@@ -5,7 +5,7 @@ import {
   ConnectorOptions,
   ConnectorType,
   useThirdwebContext,
-} from "../components/Web3Provider";
+} from "../components/providers/Web3Provider";
 
 export type ConnectorActivateOptions = {
   injected: undefined; // MetaMask
