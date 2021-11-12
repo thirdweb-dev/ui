@@ -68,7 +68,7 @@ export const ConnectWallet: React.FC = () => {
                       </Flex>
 
                       <Button
-                        onClick={handleChangeAccount}
+                        onClick={disconnectWallet}
                         variant="outline"
                         ml="auto"
                         size="sm"
