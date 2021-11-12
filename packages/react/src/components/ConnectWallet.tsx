@@ -54,10 +54,14 @@ export const ConnectWallet: React.FC = () => {
     }
   }
 
+  function shortenAddress(str: string) {
+    return str.substring(0, 6) + '...' + str.substring(str.length - 4)
+  }
+
   return (
     <>
       <Button onClick={onOpen}>
-        {address ? "Info" : "Connect Wallet"}
+        {address ? shortenAddress(address) : "Connect Wallet"}
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="md">
         <ModalOverlay />
