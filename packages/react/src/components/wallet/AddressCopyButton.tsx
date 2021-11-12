@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { IoCopy } from "react-icons/io5";
+import { shortenAddress } from "../../utils/shortenAddress";
 
 interface IAddressCopyButton extends Omit<ButtonGroupProps, "onClick"> {
   address?: string;
@@ -23,10 +24,6 @@ export const AddressCopyButton: React.FC<IAddressCopyButton> = ({
 }) => {
   const { onCopy } = useClipboard(address || "");
   const toast = useToast();
-
-  function shortenAddress(str: string) {
-    return str.substring(0, 6) + '...' + str.substring(str.length - 4)
-  }
 
   const defaultProps: ButtonGroupProps = {
     flexGrow: 0,

@@ -18,8 +18,9 @@ import {
   ModalHeader
 } from "@chakra-ui/react";
 import { useWeb3 } from "../hooks";
-import { AddressCopyButton } from "./AddressCopyButton";
+import { AddressCopyButton } from "./wallet/AddressCopyButton";
 import { Card } from "./shared/Card";
+import { ConnectButton } from "./wallet/ConnectButton";
 
 export const ConnectWallet: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,15 +55,9 @@ export const ConnectWallet: React.FC = () => {
     }
   }
 
-  function shortenAddress(str: string) {
-    return str.substring(0, 6) + '...' + str.substring(str.length - 4)
-  }
-
   return (
     <>
-      <Button onClick={onOpen}>
-        {address ? shortenAddress(address) : "Connect Wallet"}
-      </Button>
+      <ConnectButton onOpen={onOpen} />
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="md">
         <ModalOverlay />
         <ModalContent pb={4} bg="gray.50">
