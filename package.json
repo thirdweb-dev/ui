@@ -4,7 +4,6 @@
   "main": "index.js",
   "author": "Jonas Daniels <jonas.daniels@outlook.com>",
   "license": "Apache-2.0",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/nftlabs/ui"
