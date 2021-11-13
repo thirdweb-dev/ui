@@ -1,8 +1,8 @@
 {
-  "name": "thirdweb-ui",
+  "name": "@3rdweb/ui",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Jonas Daniels <jonas.daniels@outlook.com>",
+  "author": "Jonas Daniels <jonas@thirdweb.com>",
   "license": "Apache-2.0",
   "private": true,
   "repository": {
