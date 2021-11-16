@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "private": true,
   "dependencies": {
     "@3rdweb/react": "^1.0.0",
     "@chakra-ui/react": "^1.7.0",

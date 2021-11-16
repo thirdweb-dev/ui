@@ -3,6 +3,10 @@
   "version": "1.0.1",
   "main": "dist/3rdweb-react.cjs.js",
   "module": "dist/3rdweb-react.esm.js",
+  "browser": {
+    "./dist/3rdweb-react.cjs.js": "./dist/3rdweb-react.browser.cjs.js",
+    "./dist/3rdweb-react.esm.js": "./dist/3rdweb-react.browser.esm.js"
+  },
   "types": "dist/3rdweb-react.cjs.d.ts",
   "repository": {
     "type": "git",
@@ -25,8 +29,8 @@
   "dependencies": {
     "@chakra-ui/icons": "^1.1.0",
     "@chakra-ui/react": "^1.7.0",
-    "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0",
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
     "@ethersproject/providers": "^5.5.0",
     "@types/styled-components": "^5.1.15",
     "@web3-react/core": "^6.1.9",
