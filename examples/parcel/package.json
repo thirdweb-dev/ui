@@ -1,0 +1,20 @@
+{
+  "name": "parcel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@3rdweb/react": "*",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.35",
+    "@types/react-dom": "^17.0.11",
+    "parcel": "^2.0.1"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  }
+}
