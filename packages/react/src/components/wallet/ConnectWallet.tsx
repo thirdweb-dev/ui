@@ -1,23 +1,17 @@
 import { ButtonProps } from "@chakra-ui/button";
 import {
-  AspectRatio,
   Button,
-  Divider,
   Flex,
   Heading,
-  Image,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  Spinner,
   Stack,
-  Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useWeb3 } from "../../hooks";
 import { AddressCopyButton } from "./AddressCopyButton";
 import { ConnectButton } from "./ConnectButton";

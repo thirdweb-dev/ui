@@ -18,11 +18,13 @@ export const ModalDisconnected: React.FC = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const { address, provider, connectWallet, disconnectWallet, connectors } = useWeb3();
-
-  const activeProvider = useMemo(() => {
-    return provider?.provider;
-  }, [provider?.provider]);
+  const { 
+    address,
+    activeProvider,
+    connectWallet,
+    disconnectWallet,
+    connectors
+  } = useWeb3();
 
   function isEmailValid() {
     const re =

@@ -1,4 +1,4 @@
-import { Web3Provider } from "@ethersproject/providers";
+import { ExternalProvider, Web3Provider } from "@ethersproject/providers";
 import { useWeb3React } from "@web3-react/core";
 import { useCallback, useMemo } from "react";
 import {
@@ -12,6 +12,7 @@ export interface Web3ContextInterface {
   error?: Error;
   chainId?: number;
   provider?: Web3Provider;
+  activeProvider?: ExternalProvider;
   address?: string;
   connectWallet: ReturnType<typeof useConnectWallet>;
   disconnectWallet: () => void;
@@ -22,8 +23,7 @@ export function useWeb3(): Web3ContextInterface {
   const connect = useConnectWallet();
   const { connectors } = useThirdwebContext();
   const web3Context = useWeb3React<Web3Provider>();
-  const { library, connector, account, error, chainId, deactivate } =
-    web3Context;
+  const { library, connector, account, error, chainId, deactivate } = web3Context;
   const { switchNetwork } = useSwitchNetwork();
 
   const activeProvider = useMemo(() => {
@@ -56,6 +56,7 @@ export function useWeb3(): Web3ContextInterface {
       error,
       chainId,
       provider: library,
+      activeProvider,
       // Force no null account
       address: account || undefined,
       connectWallet: connect,
@@ -66,6 +67,7 @@ export function useWeb3(): Web3ContextInterface {
     [
       account,
       chainId,
+      activeProvider,
       connect,
       connectors,
       disconnectWallet,
