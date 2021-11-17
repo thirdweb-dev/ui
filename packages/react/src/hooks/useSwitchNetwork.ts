@@ -9,6 +9,33 @@ export function useSwitchNetwork() {
   const [isSwitching, setIsSwitching] = useState(false);
   const [switchError, setSwitchError] = useState<Error | null>();
 
+  const networkMetadata = {
+    1: {
+      chainName: "Ethereum Mainnet",
+      iconUrl: ""
+    },
+    4: {
+      chainName: "Rinkeby Testnet",
+      iconUrl: ""
+    }, 
+    137: {
+      chainName: "Matic Mainnet",
+      iconUrl: ""
+    }, 
+    250: {
+      chainName: "Fantom Opera",
+      iconUrl: ""
+    }, 
+    43114: {
+      chainName: "Avalanche",
+      iconUrl: ""
+    }, 
+    80001: {
+      chainName: "Matic Mumbai",
+      iconUrl: ""
+    }
+  }
+
   const canAttemptSwitch = useMemo(() => {
     return !!library?.provider.request;
   }, [library?.provider.request]);
@@ -57,6 +84,7 @@ export function useSwitchNetwork() {
   );
 
   return {
+    networkMetadata,
     switchNetwork,
     canAttemptSwitch,
     isSwitching,

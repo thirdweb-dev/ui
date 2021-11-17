@@ -4,7 +4,7 @@ import invariant from "tiny-invariant";
 import {
   ConnectorOptions,
   ConnectorType,
-  useThirdwebContext,
+  useThirdwebContext
 } from "../components/providers/Web3Provider";
 
 export type ConnectorActivateOptions = {
@@ -20,30 +20,30 @@ export type ConnectorActivateOptions = {
 
 export function useConnectWallet() {
   const { activate } = useWeb3React();
-  const { connectors } = useThirdwebContext();
+  const { connectors, supportedChainIds } = useThirdwebContext();
 
   return useCallback(
     async <TConnectorType extends ConnectorType>(
       connectorType: TConnectorType,
       connectOptions?: ConnectorActivateOptions[TConnectorType],
     ) => {
-      invariant(
-        connectors[connectorType],
-        `
+      invariant(connectors[connectorType], `
         Invalid connect() call for connector: ${connectorType}. 
         This connector is not defined on the <ThirdwebContext>.
-      `,
-      );
+      `);
+
+      const connectorOptions = connectors[connectorType] 
+        ? { ...connectors[connectorType], supportedChainIds }
+        : { supportedChainIds }
 
       switch (connectorType) {
         case "injected": {
           const { InjectedConnector } = await import(
             "@web3-react/injected-connector"
           );
-          const connectorOptions = connectors[
-            connectorType
-          ] as ConnectorOptions["injected"];
-          return await activate(new InjectedConnector(connectorOptions));
+          return await activate(
+            new InjectedConnector(connectorOptions as ConnectorOptions["injected"])
+          );
         }
         case "magic": {
           const { MagicConnector } = await import(
@@ -61,19 +61,17 @@ export function useConnectWallet() {
           const { WalletLinkConnector } = await import(
             "@web3-react/walletlink-connector"
           );
-          const connectorOptions = connectors[
-            connectorType
-          ] as ConnectorOptions["walletlink"];
-          return await activate(new WalletLinkConnector(connectorOptions));
+          return await activate(
+            new WalletLinkConnector(connectorOptions as ConnectorOptions["walletlink"])
+          );
         }
         case "walletconnect": {
           const { WalletConnectConnector } = await import(
             "@web3-react/walletconnect-connector"
           );
-          const connectorOptions = connectors[
-            connectorType
-          ] as ConnectorOptions["walletlink"];
-          return await activate(new WalletConnectConnector(connectorOptions));
+          return await activate(
+            new WalletConnectConnector(connectorOptions as ConnectorOptions["walletconnect"])
+          );
         }
         default:
           throw new Error(`Unsupported connector: ${connectorType}`);

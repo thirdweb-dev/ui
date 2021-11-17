@@ -2,10 +2,11 @@ import React from "react";
 import { Flex, Stack, Heading, Button, Divider, Select } from "@chakra-ui/react";
 import { useThirdwebContext } from "../providers/Web3Provider";
 import { AddressCopyButton } from "./AddressCopyButton";
-import { useWeb3 } from "../..";
+import { useSwitchNetwork, useWeb3 } from "../..";
 
 export const ModalConnected: React.FC = () => {
   const { supportedChainIds } = useThirdwebContext();
+  const { networkMetadata, switchNetwork, switchError } = useSwitchNetwork();
   const { address, disconnectWallet, activeProvider } = useWeb3();
 
   return (
@@ -14,9 +15,15 @@ export const ModalConnected: React.FC = () => {
         <Heading as="h4" size="sm" fontWeight="600">
           Switch network
         </Heading>
-        <Select mt="24px" placeholder="Select a network...">
+        <Select 
+          mt="24px" 
+          placeholder="Select a network..."
+          onChange={e => switchNetwork(parseInt(e.target.value))}
+        >
           {supportedChainIds.map(chainId =>
-            <option>{chainId}</option>
+            <option value={chainId}>
+              {networkMetadata[chainId] ? networkMetadata[chainId].chainName: chainId}
+            </option>
           )}
         </Select>
       </Stack>
