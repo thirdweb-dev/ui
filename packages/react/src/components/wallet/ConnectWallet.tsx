@@ -1,29 +1,22 @@
+import React from "react";
 import { ButtonProps } from "@chakra-ui/button";
 import {
-  Button,
   Flex,
-  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  Stack,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useMemo } from "react";
 import { useWeb3 } from "../../hooks";
-import { AddressCopyButton } from "./AddressCopyButton";
 import { ConnectButton } from "./ConnectButton";
+import { ModalConencted } from "./ModalConnected";
 import { ModalDisconnected } from "./ModalDisconnected";
 
 export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { address, provider, disconnectWallet } = useWeb3();
-
-  const activeProvider = useMemo(() => {
-    return provider?.provider;
-  }, [provider?.provider]);
+  const { address } = useWeb3();
 
   return (
     <>
@@ -36,28 +29,7 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
           <ModalBody pt="24px">
             <Flex direction="column">
               {address ? (
-                <Stack spacing={4}>
-                  <Heading as="h4" size="sm" fontWeight="600">
-                    Connected wallet
-                  </Heading>
-                  <Flex align="center">
-                    <Flex direction="column" align="start">
-                      <AddressCopyButton
-                        variant="outline"
-                        address={address}
-                      />
-                    </Flex>
-
-                    <Button
-                      onClick={disconnectWallet}
-                      variant="outline"
-                      ml="auto"
-                      size="sm"
-                    >
-                      {activeProvider?.isMetaMask ? "Switch" : "Disconnect"}
-                    </Button>
-                  </Flex>
-                </Stack>
+                <ModalConencted />
               ) : (
                 <ModalDisconnected />
               )}
