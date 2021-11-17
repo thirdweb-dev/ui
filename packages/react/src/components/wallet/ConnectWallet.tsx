@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useWeb3 } from "../../hooks";
 import { ConnectButton } from "./ConnectButton";
-import { ModalConencted } from "./ModalConnected";
+import { ModalConnected } from "./ModalConnected";
 import { ModalDisconnected } from "./ModalDisconnected";
 
 export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
@@ -29,7 +29,7 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
           <ModalBody pt="24px">
             <Flex direction="column">
               {address ? (
-                <ModalConencted />
+                <ModalConnected />
               ) : (
                 <ModalDisconnected />
               )}

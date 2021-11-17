@@ -4,7 +4,7 @@ import React from "react";
 function ExampleApp({ Component, pageProps }) {
   const connectors = {
     injected: {
-      supportedChainIds: [1],
+      supportedChainIds: [1, 4, 137, 250, 43114, 80001],
     },
     magic: {
       apiKey: "pk_live_712C1E6230EA31BC",
@@ -22,7 +22,7 @@ function ExampleApp({ Component, pageProps }) {
   };
 
   return (
-    <ThirdwebWeb3Provider connectors={connectors}>
+    <ThirdwebWeb3Provider connectors={connectors} displayErrors>
       <ThirdwebThemeProvider>
         <Component {...pageProps} />
       </ThirdwebThemeProvider>

@@ -1,13 +1,21 @@
 import React from "react";
-import { Flex, Stack, Heading, Button, Divider } from "@chakra-ui/react";
+import { Flex, Stack, Heading, Button, Divider, Select } from "@chakra-ui/react";
 import { AddressCopyButton } from "./AddressCopyButton";
 import { useWeb3 } from "../..";
 
-export const ModalConencted: React.FC = () => {
+export const ModalConnected: React.FC = () => {
   const { address, disconnectWallet, activeProvider } = useWeb3();
 
   return (
     <Flex direction="column">
+      <Stack spacing={4}>
+        <Heading as="h4" size="sm" fontWeight="600">
+          Switch network
+        </Heading>
+        <Select mt="24px" placeholder="Select a network...">
+
+        </Select>
+      </Stack>
       
       <Divider mt="32px" mb="24px" width="md" alignSelf="center" />
 

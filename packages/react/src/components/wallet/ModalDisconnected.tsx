@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { 
   Flex, 
   Stack,
@@ -12,19 +12,12 @@ import {
   Spinner
 } from "@chakra-ui/react";
 import { useWeb3 } from "../..";
-import { AddressCopyButton } from "./AddressCopyButton";
 
 export const ModalDisconnected: React.FC = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const { 
-    address,
-    activeProvider,
-    connectWallet,
-    disconnectWallet,
-    connectors
-  } = useWeb3();
+  const { address, connectWallet, connectors } = useWeb3();
 
   function isEmailValid() {
     const re =
@@ -45,31 +38,6 @@ export const ModalDisconnected: React.FC = () => {
 
   return (
     <Flex direction="column">
-      {address && (
-        <Stack spacing={4}>
-          <Heading as="h4" size="sm" fontWeight="600">
-            Connected wallet
-          </Heading>
-          <Flex align="center">
-            <Flex direction="column" align="start">
-              <AddressCopyButton
-                variant="outline"
-                address={address}
-              />
-            </Flex>
-
-            <Button
-              onClick={disconnectWallet}
-              variant="outline"
-              ml="auto"
-              size="sm"
-            >
-              {activeProvider?.isMetaMask ? "Switch" : "Disconnect"}
-            </Button>
-          </Flex>
-        </Stack>
-      )}
-
       {connectors.includes("magic") && (
         <Stack spacing={4}>
           <Heading as="h4" size="sm" fontWeight="600">

@@ -51,6 +51,7 @@ export interface ThirdwebContext {
   _inProvider: boolean;
   readonly connectors: Partial<ConnectorOptions>;
   readonly chainAddConfig?: Record<number, AddEthereumChainParameter>;
+  readonly displayErrors?: boolean;
 }
 
 function getLibrary(provider: any): Web3Provider {
@@ -60,6 +61,7 @@ function getLibrary(provider: any): Web3Provider {
 const ThirdwebContext = createContext<ThirdwebContext>({
   _inProvider: false,
   connectors: {},
+  displayErrors: false
 });
 
 export function useThirdwebContext(): ThirdwebContext {
@@ -77,16 +79,20 @@ export function useThirdwebContext(): ThirdwebContext {
 export const ThirdwebWeb3Provider: React.FC<{
   connectors: ThirdwebContext["connectors"];
   chainAddConfig?: ThirdwebContext["chainAddConfig"];
-}> = ({ connectors, chainAddConfig, children }) => {
+  displayErrors?: ThirdwebContext["displayErrors"];
+}> = ({ connectors, chainAddConfig, displayErrors, children }) => {
   return (
     <ThirdwebContext.Provider
       value={{
         _inProvider: true,
         connectors,
         chainAddConfig,
+        displayErrors,
       }}
     >
-      <Web3ReactProvider getLibrary={getLibrary}>{children}</Web3ReactProvider>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        {children}
+      </Web3ReactProvider>
     </ThirdwebContext.Provider>
   );
 };
