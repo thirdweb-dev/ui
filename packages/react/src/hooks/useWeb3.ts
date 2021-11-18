@@ -3,11 +3,15 @@ import { ExternalProvider, Web3Provider } from "@ethersproject/providers";
 import { useWeb3React } from "@web3-react/core";
 import { ConnectorType, useThirdwebContext } from "../components/providers/Web3Provider";
 import { useConnectWallet } from "./useConnectWallet";
+import { AbstractConnector } from "@web3-react/abstract-connector";
 
 export interface Web3ContextInterface {
   error?: Error;
   chainId?: number;
   provider?: Web3Provider;
+  connector?: AbstractConnector & {
+    [key: string]: any;
+  };
   activeProvider?: ExternalProvider;
   address?: string;
   connectWallet: ReturnType<typeof useConnectWallet>;
@@ -50,6 +54,7 @@ export function useWeb3(): Web3ContextInterface {
     () => ({
       error,
       chainId,
+      connector,
       provider: library,
       activeProvider,
       // Force no null account
@@ -61,6 +66,7 @@ export function useWeb3(): Web3ContextInterface {
     [
       account,
       chainId,
+      connector,
       activeProvider,
       connect,
       connectors,
