@@ -7,7 +7,7 @@ import { useSwitchNetwork, useWeb3 } from "../..";
 export const ModalConnected: React.FC = () => {
   const { supportedChainIds } = useThirdwebContext();
   const { networkMetadata, switchNetwork, switchError } = useSwitchNetwork();
-  const { address, disconnectWallet, activeProvider } = useWeb3();
+  const { chainId, address, disconnectWallet, activeProvider } = useWeb3();
 
   return (
     <Flex direction="column">
@@ -19,10 +19,11 @@ export const ModalConnected: React.FC = () => {
           mt="24px" 
           placeholder="Select a network..."
           onChange={e => switchNetwork(parseInt(e.target.value))}
+          value={chainId}
         >
           {supportedChainIds.map(chainId =>
             <option value={chainId}>
-              {networkMetadata[chainId] ? networkMetadata[chainId].chainName: chainId}
+              {networkMetadata[chainId] ? networkMetadata[chainId].chainName : chainId}
             </option>
           )}
         </Select>
