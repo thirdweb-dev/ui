@@ -1,7 +1,6 @@
 # Thirdweb Component Library
 
 ## Resources
----
 
 - Documentation for the Thirdweb Component Library is available on the [Thirdweb Web3 Portal](https://thirdweb.com/portal/).
 - You can visit the [Thirdweb](https://thirdweb.com) website for information on the platform.
@@ -9,7 +8,6 @@
 <br>
 
 ## Introduction
----
 
 Welcome to the Thirdweb Component Library. This package provides you with extensible components to handle the web3 side of your app. 
 
@@ -23,7 +21,6 @@ Our main features are:
 <br>
 
 ## Getting Started
----
 
 To get started with the Thirdweb Component Library, you just need to setup the `ThirdwebWeb3Context` that provides all the context consumed by your app, and the `ThirdwebThemeProvider`, which lets you use our custom components.
 
@@ -74,7 +71,6 @@ const App = ({ children }) => {
 <br>
 
 ## Connect Wallet & Web3 Setup
----
 
 Currently, we provide you with components and hooks to easily integrate web3 into your app and setup an app wide context without having to deal with the complexity of lower level web3 configuration.
 
