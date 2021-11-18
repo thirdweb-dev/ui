@@ -1,6 +1,6 @@
 import { Web3Provider } from "@ethersproject/providers";
 import { useWeb3React } from "@web3-react/core";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useThirdwebContext } from "../components/providers/Web3Provider";
 
 const defaultChainAddConfig = {
@@ -82,17 +82,33 @@ const defaultChainAddConfig = {
 
 export function useSwitchNetwork() {
   const { chainAddConfig } = useThirdwebContext();
-  const { library, chainId } = useWeb3React<Web3Provider>();
+  const { account, library, connector, chainId } = useWeb3React<Web3Provider>();
   const [isSwitching, setIsSwitching] = useState(false);
   const [switchError, setSwitchError] = useState<Error | null>();
+  const [connectorProvider, setConnectorProvider] = useState<any>();
+
+  useEffect(() => {
+    const getProvider = async () => {
+      const connectorProvider = await connector?.getProvider();
+      setConnectorProvider(connectorProvider);
+    }
+
+    if (connector) {
+      getProvider();
+    }
+  }, [connector])
+
+  useEffect(() => {
+    setSwitchError(null);
+  }, [chainId, account])
 
   const canAttemptSwitch = useMemo(() => {
-    return !!library?.provider.request;
-  }, [library?.provider.request]);
+    return !!connectorProvider?.request;
+  }, [connectorProvider?.request]);
 
   const switchNetwork = useCallback(
     async (newChainId: number) => {
-      if (!library?.provider.request) {
+      if (!connectorProvider?.request) {
         setSwitchError(new Error("No provider available to switch"));
         return;
       }
@@ -105,7 +121,7 @@ export function useSwitchNetwork() {
       setIsSwitching(true);
       const chainHex = `0x${newChainId.toString(16)}`;
       try {
-        await library?.provider.request({
+        await connectorProvider.request({
           method: "wallet_switchEthereumChain",
           params: [{ chainId: chainHex }],
         });
@@ -116,7 +132,7 @@ export function useSwitchNetwork() {
           chainAddConfig[newChainId]
         ) {
           try {
-            await library?.provider.request({
+            await connectorProvider.request({
               method: "wallet_addEthereumChain",
               params: [chainAddConfig[newChainId]],
             });
@@ -128,7 +144,7 @@ export function useSwitchNetwork() {
           defaultChainAddConfig[newChainId]
         ) {
           try {
-            await library?.provider.request({
+            await connectorProvider.request({
               method: "wallet_addEthereumChain",
               params: [defaultChainAddConfig[newChainId]],
             });
@@ -142,7 +158,7 @@ export function useSwitchNetwork() {
         setIsSwitching(false);
       }
     },
-    [chainAddConfig, library, chainId],
+    [chainAddConfig, connectorProvider, library, chainId],
   );
 
   return {

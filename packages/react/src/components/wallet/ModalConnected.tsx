@@ -1,24 +1,37 @@
 import React from "react";
-import { Flex, Stack, Heading, Button, Divider, Select, Image, Text } from "@chakra-ui/react";
+import { 
+  Flex, 
+  Stack, 
+  Heading, 
+  Button, 
+  Divider, 
+  Alert, 
+  AlertIcon,
+  Image, 
+  Text 
+} from "@chakra-ui/react";
 import { useThirdwebContext } from "../providers/Web3Provider";
 import { AddressCopyButton } from "./AddressCopyButton";
 import { useSwitchNetwork, useWeb3 } from "../..";
 
 export const ModalConnected: React.FC = () => {
   const { supportedChainIds } = useThirdwebContext();
-  const { switchNetwork } = useSwitchNetwork();
+  const { switchNetwork, switchError } = useSwitchNetwork();
   const { 
     chainId, 
     connector, 
+    error,
     address, 
     activeProvider, 
     disconnectWallet, 
     getNetworkMetadata 
   } = useWeb3();
 
+  console.log(connector);
+
   return (
     <Flex direction="column">
-      {!connector?.magic && (  
+      {!connector?.magic && !connector?.walletConnectProvider && (  
         <>
           <Flex direction="column">
             <Heading as="h4" size="sm" fontWeight="600" mb="12px">
@@ -59,23 +72,31 @@ export const ModalConnected: React.FC = () => {
         <Heading as="h4" size="sm" fontWeight="600">
           Connected wallet
         </Heading>
-        <Flex align="center">
-          <Flex direction="column" align="start">
-            <AddressCopyButton
-              variant="outline"
-              address={address}
-            />
-          </Flex>
 
-          <Button
-            onClick={disconnectWallet}
-            variant="outline"
-            ml="auto"
-            size="sm"
-          >
-            {activeProvider?.isMetaMask ? "Switch" : "Disconnect"}
-          </Button>
-        </Flex>
+        {error || switchError ? (
+          <Alert status="error" borderRadius="md" fontSize="sm" fontWeight="medium">
+            <AlertIcon />
+            {switchError?.message || error?.message}
+          </Alert>
+        ) : (
+          <Flex align="center">
+            <Flex direction="column" align="start">
+              <AddressCopyButton
+                variant="outline"
+                address={address}
+              />
+            </Flex>
+
+            <Button
+              onClick={disconnectWallet}
+              variant="outline"
+              ml="auto"
+              size="sm"
+            >
+              {activeProvider?.isMetaMask ? "Switch" : "Disconnect"}
+            </Button>
+          </Flex>
+        )}
       </Stack>
     </Flex>
   )

@@ -5,7 +5,6 @@ import { AbstractConnector } from "@web3-react/abstract-connector";
 import { useConnectWallet } from "./useConnectWallet";
 import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
-import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 
 export interface Web3ContextInterface {
   error?: Error;

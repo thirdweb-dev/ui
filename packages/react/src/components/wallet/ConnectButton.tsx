@@ -3,13 +3,17 @@ import { Button, Stack, Flex, Tooltip, Image, Text, Divider } from "@chakra-ui/r
 import { shortenAddress } from "../../utils/shortenAddress";
 import { formatEther } from "@ethersproject/units";
 import { IoWalletOutline } from "react-icons/io5";
+import { FiAlertTriangle } from "react-icons/fi";
 import { useWeb3 } from "../../hooks/useWeb3";
 import { Icon } from "@chakra-ui/icons";
+import { useSwitchNetwork } from "../..";
 
 export const ConnectButton: React.FC<{
   onOpen: () => void;
-}> = ({ onOpen, ...props }) => {
-  const { address, provider, chainId, getNetworkMetadata } = useWeb3();
+  isOpen: boolean;
+}> = ({ onOpen, isOpen, ...props }) => {
+  const { address, provider, chainId, error, getNetworkMetadata } = useWeb3();
+  const { switchError } = useSwitchNetwork();
   const [renderBalance, setRenderBalance] = useState("");
 
   useEffect(() => {
@@ -18,12 +22,12 @@ export const ConnectButton: React.FC<{
         const balance = await provider?.getBalance(address);
         setRenderBalance(formatEther(balance || 0).slice(0, 6));
       } else {
-        setRenderBalance("");
+        setRenderBalance("0.0");
       }
     }
 
     getBalance();
-  }, [provider])
+  }, [provider, address])
 
   const networkMetadata = useMemo(() => {
     if (chainId) {
@@ -33,9 +37,15 @@ export const ConnectButton: React.FC<{
 
   return (
     <Tooltip
+      zIndex={-1}
       hasArrow
+      isOpen={!isOpen && (!!error || !!switchError)}
       label={
-        address
+        switchError
+          ? switchError.message
+          : error
+          ? error.message
+          : address
           ? "Manage your connected wallet"
           : "Connect your wallet to get started"
       }
@@ -93,12 +103,17 @@ export const ConnectButton: React.FC<{
         <Button
           px={6}
           borderRadius="8px"
-          leftIcon={<Icon mt="-1px" as={IoWalletOutline}></Icon>}
+          leftIcon={
+            error || switchError 
+            ? <Icon as={FiAlertTriangle} />
+            : <Icon as={IoWalletOutline} />
+          }
           onClick={onOpen}
           iconSpacing={3}
+          colorScheme={error || switchError ? "red" : "blue"}
           {...props}
         >
-          Connect Wallet
+          {error || switchError ? "Network Error" : "Connect Wallet"}
         </Button>
       )}
     </Tooltip>
