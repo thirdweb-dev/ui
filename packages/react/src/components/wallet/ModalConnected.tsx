@@ -6,8 +6,15 @@ import { useSwitchNetwork, useWeb3 } from "../..";
 
 export const ModalConnected: React.FC = () => {
   const { supportedChainIds } = useThirdwebContext();
-  const { networkMetadata, switchNetwork, switchError } = useSwitchNetwork();
-  const { chainId, connector, address, disconnectWallet, activeProvider } = useWeb3();
+  const { switchNetwork } = useSwitchNetwork();
+  const { 
+    chainId, 
+    connector, 
+    address, 
+    activeProvider, 
+    disconnectWallet, 
+    getNetworkMetadata 
+  } = useWeb3();
 
   return (
     <Flex direction="column">
@@ -32,13 +39,13 @@ export const ModalConnected: React.FC = () => {
                 cursor="pointer"
               >
                 <Image 
-                  src={networkMetadata[chainId]?.iconUrl || ""} 
+                  src={getNetworkMetadata(chainId).iconUrl} 
                   height="36x"
                   width="36px"
                   borderRadius="25px"
                 />
                 <Text ml="12px" fontWeight="medium" fontSize="14px">
-                  {networkMetadata[chainId]?.chainName}
+                  {getNetworkMetadata(chainId).chainName}
                 </Text>
               </Flex>
             )}

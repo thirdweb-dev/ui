@@ -47,10 +47,17 @@ export interface AddEthereumChainParameter {
   iconUrls?: string[];
 }
 
+export interface NetworkMetadata {
+  chainName: string;
+  iconUrl: string;
+  symbol: string;
+}
+
 export interface ThirdwebContext {
   _inProvider: boolean;
   readonly connectors: Partial<ConnectorOptions>;
   readonly supportedChainIds: number[];
+  readonly networkMetadata?: Record<number, NetworkMetadata>; 
   readonly chainAddConfig?: Record<number, AddEthereumChainParameter>;
 }
 
@@ -79,14 +86,22 @@ export function useThirdwebContext(): ThirdwebContext {
 export const ThirdwebWeb3Provider: React.FC<{
   connectors: ThirdwebContext["connectors"];
   supportedChainIds: ThirdwebContext["supportedChainIds"];
+  networkMetadata: ThirdwebContext["networkMetadata"]
   chainAddConfig?: ThirdwebContext["chainAddConfig"];
-}> = ({ connectors, chainAddConfig, supportedChainIds, children }) => {
+}> = ({
+  connectors,
+  supportedChainIds,
+  networkMetadata,
+  chainAddConfig,
+  children 
+}) => {
   return (
     <ThirdwebContext.Provider
       value={{
         _inProvider: true,
         connectors,
         supportedChainIds,
+        networkMetadata,
         chainAddConfig,
       }}
     >

@@ -1,17 +1,15 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { Icon } from "@chakra-ui/icons";
-import { formatEther } from "@ethersproject/units";
 import { Button, Stack, Flex, Tooltip, Image, Text, Divider } from "@chakra-ui/react";
-import { IoWalletOutline } from "react-icons/io5";
-import { useSwitchNetwork } from "../..";
-import { useWeb3 } from "../../hooks/useWeb3";
 import { shortenAddress } from "../../utils/shortenAddress";
+import { formatEther } from "@ethersproject/units";
+import { IoWalletOutline } from "react-icons/io5";
+import { useWeb3 } from "../../hooks/useWeb3";
+import { Icon } from "@chakra-ui/icons";
 
 export const ConnectButton: React.FC<{
   onOpen: () => void;
 }> = ({ onOpen, ...props }) => {
-  const { address, provider, chainId } = useWeb3();
-  const { networkMetadata } = useSwitchNetwork();
+  const { address, provider, chainId, getNetworkMetadata } = useWeb3();
   const [renderBalance, setRenderBalance] = useState("");
 
   useEffect(() => {
@@ -27,14 +25,10 @@ export const ConnectButton: React.FC<{
     getBalance();
   }, [provider])
 
-  const renderSymbol = useMemo(() => {
-    return (chainId && networkMetadata[chainId]?.symbol) || "";
-  }, [chainId]);
-
-  const renderIcon = useMemo(() => {
-    return (
-      (chainId && networkMetadata[chainId]?.iconUrl) || undefined
-    );
+  const networkMetadata = useMemo(() => {
+    if (chainId) {
+      return getNetworkMetadata(chainId);
+    }
   }, [chainId]);
 
   return (
@@ -62,12 +56,12 @@ export const ConnectButton: React.FC<{
           {...props}
         >
           <Stack flexShrink={0} direction="row" align="center" pr={3}>
-            {renderIcon && (
+            {networkMetadata?.iconUrl && (
               <Image 
                 height="40px"
                 width="40px"
                 borderRadius="25px"
-                src={renderIcon} 
+                src={networkMetadata.iconUrl} 
               />
             )}
             <Stack textAlign="left" justify="flex-start" spacing={0}>
@@ -75,7 +69,7 @@ export const ConnectButton: React.FC<{
                 {shortenAddress(address)}
               </Text>
               <Text color="gray.500" fontSize="12px" lineHeight={1}>
-                {chainId && networkMetadata[chainId]?.chainName}
+                {networkMetadata?.chainName}
               </Text>
             </Stack>
           </Stack>
@@ -91,8 +85,8 @@ export const ConnectButton: React.FC<{
             lineHeight="14px"
           >
             {renderBalance}
-            {renderSymbol.length > 2 && <br />}
-            {renderSymbol}
+            {networkMetadata && networkMetadata.symbol.length  > 2 && <br />}
+            {networkMetadata?.symbol}
           </Text>
         </Flex>
       ) : (

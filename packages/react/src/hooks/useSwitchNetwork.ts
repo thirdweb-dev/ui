@@ -3,39 +3,6 @@ import { useWeb3React } from "@web3-react/core";
 import { useCallback, useMemo, useState } from "react";
 import { useThirdwebContext } from "../components/providers/Web3Provider";
 
-const defaultNetworkMetadata = {
-  1: {
-    chainName: "Ethereum Mainnet",
-    iconUrl: "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
-    symbol: "ETH"
-  },
-  4: {
-    chainName: "Rinkeby Testnet",
-    iconUrl: "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
-    symbol: "ETJ"
-  }, 
-  137: {
-    chainName: "Matic Mainnet",
-    iconUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
-    symbol: "MATIC"
-  }, 
-  250: {
-    chainName: "Fantom Opera",
-    iconUrl: "https://icodrops.com/wp-content/uploads/2018/04/teryT6Hw_400x400.jpg",
-    symbol: "FTM"
-  }, 
-  43114: {
-    chainName: "Avalanche",
-    iconUrl: "https://assets.website-files.com/6059b554e81c705f9dd2dd32/60ec6a944b52e3e96e16af68_Avalanche_Square_Red_Circle.png",
-    symbol: "AVAX"
-  }, 
-  80001: {
-    chainName: "Matic Mumbai",
-    iconUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
-    symbol: "MATIC"
-  }
-}
-
 const defaultChainAddConfig = {
   1: { 
     chainId: "0x1",
@@ -125,8 +92,6 @@ export function useSwitchNetwork() {
 
   const switchNetwork = useCallback(
     async (newChainId: number) => {
-      console.log(newChainId);
-
       if (!library?.provider.request) {
         setSwitchError(new Error("No provider available to switch"));
         return;
@@ -181,7 +146,6 @@ export function useSwitchNetwork() {
   );
 
   return {
-    networkMetadata: defaultNetworkMetadata,
     switchNetwork,
     canAttemptSwitch,
     isSwitching,
