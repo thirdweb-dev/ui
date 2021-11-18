@@ -32,7 +32,7 @@ const defaultNetworkMetadata = {
 
 const defaultChainAddConfig = {
   1: { 
-    chainId: 1,
+    chainId: "0x1",
     chainName: "Ethereum Mainnet",
     nativeCurrency: {
       name: "Ethereum",
@@ -44,7 +44,7 @@ const defaultChainAddConfig = {
     ],
   },
   4: {
-    chainId: 4,
+    chainId: "0x4",
     chainName: "Rinkeby Tesnet",
     nativeCurrency: {
       name: "Ethereum",
@@ -56,7 +56,7 @@ const defaultChainAddConfig = {
     ],
   },
   137: {
-    chainId: 137,
+    chainId: "0x89",
     chainName: "Matic Mainnet",
     nativeCurrency: {
       name: "Matic",
@@ -70,7 +70,7 @@ const defaultChainAddConfig = {
     ],
   },
   250: {
-    chainId: 250,
+    chainId: "0xfa",
     chainName: "Fantom Opera",
     nativeCurrency: {
       name: "Fantom",
@@ -82,7 +82,7 @@ const defaultChainAddConfig = {
     ],
   },
   43114: {
-    chainId: 43114,
+    chainId: "0xa86a",
     chainName: "Avalanche Mainnet",
     nativeCurrency: {
       name: "Avalanche",
@@ -94,7 +94,7 @@ const defaultChainAddConfig = {
     ],
   },
   80001: {
-    chainId: 80001,
+    chainId: "0x13881",
     chainName: "Matic Mumbai",
     nativeCurrency: {
       name: "Matic",
@@ -119,6 +119,8 @@ export function useSwitchNetwork() {
 
   const switchNetwork = useCallback(
     async (newChainId: number) => {
+      console.log(newChainId);
+
       if (!library?.provider.request) {
         setSwitchError(new Error("No provider available to switch"));
         return;
@@ -152,7 +154,6 @@ export function useSwitchNetwork() {
           }
         } else if (
           (_switchError as any).code === 4902 &&
-          defaultChainAddConfig &&
           defaultChainAddConfig[newChainId]
         ) {
           try {
