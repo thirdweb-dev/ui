@@ -1,9 +1,8 @@
 import React from "react";
-import { Flex, Stack, Heading, Button, Divider, Select } from "@chakra-ui/react";
+import { Flex, Stack, Heading, Button, Divider, Select, Image, Text } from "@chakra-ui/react";
 import { useThirdwebContext } from "../providers/Web3Provider";
 import { AddressCopyButton } from "./AddressCopyButton";
 import { useSwitchNetwork, useWeb3 } from "../..";
-import { MagicConnector } from "@web3-react/magic-connector";
 
 export const ModalConnected: React.FC = () => {
   const { supportedChainIds } = useThirdwebContext();
@@ -14,23 +13,36 @@ export const ModalConnected: React.FC = () => {
     <Flex direction="column">
       {!connector?.magic && (  
         <>
-          <Stack spacing={4}>
-            <Heading as="h4" size="sm" fontWeight="600">
+          <Flex direction="column">
+            <Heading as="h4" size="sm" fontWeight="600" mb="12px">
               Switch network
             </Heading>
-            <Select 
-              mt="24px" 
-              placeholder="Select a network..."
-              onChange={e => switchNetwork(parseInt(e.target.value))}
-              value={chainId}
-            >
-              {supportedChainIds.map(chainId =>
-                <option value={chainId}>
-                  {networkMetadata[chainId] ? networkMetadata[chainId].chainName : chainId}
-                </option>
-              )}
-            </Select>
-          </Stack>
+            {supportedChainIds.filter(id => id !== chainId).map(chainId =>   
+              <Flex 
+                alignSelf="center"
+                onClick={() => switchNetwork(chainId)}
+                align="center"
+                width="md"
+                _hover={{
+                  bg: "gray.100"
+                }}
+                height="50px"
+                px="20px"
+                my="4px"
+                cursor="pointer"
+              >
+                <Image 
+                  src={networkMetadata[chainId]?.iconUrl || ""} 
+                  height="36x"
+                  width="36px"
+                  borderRadius="25px"
+                />
+                <Text ml="12px" fontWeight="medium" fontSize="14px">
+                  {networkMetadata[chainId]?.chainName}
+                </Text>
+              </Flex>
+            )}
+          </Flex>
           
           <Divider mt="32px" mb="24px" width="md" alignSelf="center" />
         </>
