@@ -1,9 +1,11 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 import { ConnectorType, NetworkMetadata, useThirdwebContext } from "../components/providers/Web3Provider";
 import { ExternalProvider, Web3Provider } from "@ethersproject/providers";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 import { useConnectWallet } from "./useConnectWallet";
 import { useWeb3React } from "@web3-react/core";
+import { InjectedConnector } from "@web3-react/injected-connector";
+import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 
 export interface Web3ContextInterface {
   error?: Error;
@@ -58,6 +60,19 @@ export function useWeb3(): Web3ContextInterface {
   const { connectors, networkMetadata } = useThirdwebContext();
   const web3Context = useWeb3React<Web3Provider>();
   const { library, connector, account, error, chainId, deactivate } = web3Context;
+
+  useEffect(() => { 
+    const checkInjected = async () => {
+      const injected = new InjectedConnector({});
+      if (await injected.isAuthorized()) {
+        connect("injected");
+      }
+    }
+
+    setTimeout(() => {
+      checkInjected();
+    }, 500)
+  }, [])
 
   const activeProvider = useMemo(() => {
     return library?.provider;

@@ -18,7 +18,10 @@ function ExampleApp({ Component, pageProps }) {
   };
 
   return (
-    <ThirdwebWeb3Provider connectors={connectors} supportedChainIds={supportedChainIds}>
+    <ThirdwebWeb3Provider 
+      connectors={connectors} 
+      supportedChainIds={supportedChainIds}
+    >
       <ThirdwebThemeProvider>
         <Component {...pageProps} />
       </ThirdwebThemeProvider>
