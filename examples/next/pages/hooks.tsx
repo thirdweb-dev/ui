@@ -3,7 +3,7 @@ import { AspectRatio, Button, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
 
 export default function Hooks() {
-  const { address, chainId, connectWallet, disconnectWallet } =useWeb3();
+  const { address, chainId, connectWallet, disconnectWallet } = useWeb3();
   const { canAttemptSwitch } = useSwitchNetwork();
 
   return (
