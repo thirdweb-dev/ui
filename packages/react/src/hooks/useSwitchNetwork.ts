@@ -6,27 +6,27 @@ import { useThirdwebContext } from "../components/providers/Web3Provider";
 const defaultNetworkMetadata = {
   1: {
     chainName: "Ethereum Mainnet",
-    iconUrl: ""
+    iconUrl: "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png"
   },
   4: {
     chainName: "Rinkeby Testnet",
-    iconUrl: ""
+    iconUrl: "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png"
   }, 
   137: {
     chainName: "Matic Mainnet",
-    iconUrl: ""
+    iconUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png"
   }, 
   250: {
     chainName: "Fantom Opera",
-    iconUrl: ""
+    iconUrl: "https://icodrops.com/wp-content/uploads/2018/04/teryT6Hw_400x400.jpg"
   }, 
   43114: {
     chainName: "Avalanche",
-    iconUrl: ""
+    iconUrl: "https://assets.website-files.com/6059b554e81c705f9dd2dd32/60ec6a944b52e3e96e16af68_Avalanche_Square_Red_Circle.png"
   }, 
   80001: {
     chainName: "Matic Mumbai",
-    iconUrl: ""
+    iconUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png"
   }
 }
 
