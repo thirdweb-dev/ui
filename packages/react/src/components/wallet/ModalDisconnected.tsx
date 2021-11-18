@@ -89,6 +89,7 @@ export const ModalDisconnected: React.FC = () => {
 
           {connectors.includes("injected") && (
             <Button
+              display={{ base: "none", sm: "flex" }}
               size="lg"
               variant="outline"
               isFullWidth
