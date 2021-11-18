@@ -1,10 +1,14 @@
-import { useCallback, useMemo, useEffect } from "react";
-import { ConnectorType, NetworkMetadata, useThirdwebContext } from "../components/providers/Web3Provider";
 import { ExternalProvider, Web3Provider } from "@ethersproject/providers";
 import { AbstractConnector } from "@web3-react/abstract-connector";
-import { useConnectWallet } from "./useConnectWallet";
 import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
+import { useCallback, useEffect, useMemo } from "react";
+import {
+  ConnectorType,
+  NetworkMetadata,
+  useThirdwebContext,
+} from "../components/providers/Web3Provider";
+import { useConnectWallet } from "./useConnectWallet";
 
 export interface Web3ContextInterface {
   error?: Error;
@@ -24,54 +28,59 @@ export interface Web3ContextInterface {
 const defaultNetworkMetadata = {
   1: {
     chainName: "Ethereum Mainnet",
-    iconUrl: "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
-    symbol: "ETH"
+    iconUrl:
+      "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
+    symbol: "ETH",
   },
   4: {
     chainName: "Rinkeby Testnet",
-    iconUrl: "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
-    symbol: "ETH"
-  }, 
+    iconUrl:
+      "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
+    symbol: "ETH",
+  },
   137: {
     chainName: "Matic Mainnet",
     iconUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
-    symbol: "MATIC"
-  }, 
+    symbol: "MATIC",
+  },
   250: {
     chainName: "Fantom Opera",
-    iconUrl: "https://icodrops.com/wp-content/uploads/2018/04/teryT6Hw_400x400.jpg",
-    symbol: "FTM"
-  }, 
+    iconUrl:
+      "https://icodrops.com/wp-content/uploads/2018/04/teryT6Hw_400x400.jpg",
+    symbol: "FTM",
+  },
   43114: {
     chainName: "Avalanche",
-    iconUrl: "https://assets.website-files.com/6059b554e81c705f9dd2dd32/60ec6a944b52e3e96e16af68_Avalanche_Square_Red_Circle.png",
-    symbol: "AVAX"
-  }, 
+    iconUrl:
+      "https://assets.website-files.com/6059b554e81c705f9dd2dd32/60ec6a944b52e3e96e16af68_Avalanche_Square_Red_Circle.png",
+    symbol: "AVAX",
+  },
   80001: {
     chainName: "Matic Mumbai",
     iconUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
-    symbol: "MATIC"
-  }
-}
+    symbol: "MATIC",
+  },
+};
 
 export function useWeb3(): Web3ContextInterface {
   const connect = useConnectWallet();
   const { connectors, networkMetadata } = useThirdwebContext();
   const web3Context = useWeb3React<Web3Provider>();
-  const { library, connector, account, error, chainId, deactivate } = web3Context;
+  const { library, connector, account, error, chainId, deactivate } =
+    web3Context;
 
-  useEffect(() => { 
+  useEffect(() => {
     const checkInjected = async () => {
       const injected = new InjectedConnector({});
       if (await injected.isAuthorized()) {
         connect("injected");
       }
-    }
+    };
 
     setTimeout(() => {
       checkInjected();
-    }, 500)
-  }, [])
+    }, 500);
+  }, [connect]);
 
   const activeProvider = useMemo(() => {
     return library?.provider;
@@ -98,13 +107,19 @@ export function useWeb3(): Web3ContextInterface {
     }
   }, [activeProvider, connector, deactivate]);
 
-  const getNetworkMetadata = useCallback((chainId: number): NetworkMetadata => {
-    return networkMetadata && networkMetadata[chainId] || defaultNetworkMetadata[chainId] || {
-      chainName: "",
-      iconUrl: "",
-      symbol: ""
-    }
-  }, [networkMetadata])
+  const getNetworkMetadata = useCallback(
+    (_chainId: number): NetworkMetadata => {
+      return (
+        (networkMetadata && networkMetadata[_chainId]) ||
+        defaultNetworkMetadata[_chainId] || {
+          chainName: "",
+          iconUrl: "",
+          symbol: "",
+        }
+      );
+    },
+    [networkMetadata],
+  );
 
   return useMemo(
     () => ({
@@ -113,11 +128,12 @@ export function useWeb3(): Web3ContextInterface {
       connector,
       provider: library,
       activeProvider,
-      address: account || undefined, // Force no null account
+      // Force no null account
+      address: account || undefined,
       connectors: Object.keys(connectors) as ConnectorType[],
       connectWallet: connect,
       disconnectWallet,
-      getNetworkMetadata
+      getNetworkMetadata,
     }),
     [
       account,

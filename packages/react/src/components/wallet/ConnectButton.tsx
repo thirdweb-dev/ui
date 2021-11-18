@@ -1,12 +1,20 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { Button, Stack, Flex, Tooltip, Image, Text, Divider } from "@chakra-ui/react";
-import { shortenAddress } from "../../utils/shortenAddress";
-import { formatEther } from "@ethersproject/units";
-import { IoWalletOutline } from "react-icons/io5";
-import { FiAlertTriangle } from "react-icons/fi";
-import { useWeb3 } from "../../hooks/useWeb3";
 import { Icon } from "@chakra-ui/icons";
-import { useSwitchNetwork } from "../..";
+import {
+  Button,
+  Divider,
+  Flex,
+  Image,
+  Stack,
+  Text,
+  Tooltip,
+} from "@chakra-ui/react";
+import { formatEther } from "@ethersproject/units";
+import React, { useEffect, useMemo, useState } from "react";
+import { FiAlertTriangle } from "react-icons/fi";
+import { IoWalletOutline } from "react-icons/io5";
+import { useSwitchNetwork } from "../../hooks/useSwitchNetwork";
+import { useWeb3 } from "../../hooks/useWeb3";
+import { shortenAddress } from "../../utils/shortenAddress";
 
 export const ConnectButton: React.FC<{
   onOpen: () => void;
@@ -24,16 +32,16 @@ export const ConnectButton: React.FC<{
       } else {
         setRenderBalance("0.0");
       }
-    }
+    };
 
     getBalance();
-  }, [provider, address])
+  }, [provider, address]);
 
   const networkMetadata = useMemo(() => {
     if (chainId) {
       return getNetworkMetadata(chainId);
     }
-  }, [chainId]);
+  }, [chainId, getNetworkMetadata]);
 
   return (
     <Tooltip
@@ -51,7 +59,7 @@ export const ConnectButton: React.FC<{
       }
     >
       {address ? (
-        <Flex 
+        <Flex
           borderRadius="25px"
           borderWidth="1px"
           borderColor="gray.300"
@@ -61,17 +69,17 @@ export const ConnectButton: React.FC<{
           onClick={onOpen}
           cursor="pointer"
           _hover={{
-            borderColor: "#5CC4FF"
+            borderColor: "#5CC4FF",
           }}
           {...props}
         >
           <Stack flexShrink={0} direction="row" align="center" pr={3}>
             {networkMetadata?.iconUrl && (
-              <Image 
+              <Image
                 height="40px"
                 width="40px"
                 borderRadius="25px"
-                src={networkMetadata.iconUrl} 
+                src={networkMetadata.iconUrl}
               />
             )}
             <Stack textAlign="left" justify="flex-start" spacing={0}>
@@ -88,14 +96,15 @@ export const ConnectButton: React.FC<{
             flexShrink={0}
             orientation="vertical"
           />
-          <Text 
-            flexShrink={0} px={3} 
-            fontSize="12px" 
-            color="#0098EE" 
+          <Text
+            flexShrink={0}
+            px={3}
+            fontSize="12px"
+            color="#0098EE"
             lineHeight="14px"
           >
             {renderBalance}
-            {networkMetadata && networkMetadata.symbol.length  > 2 && <br />}
+            {networkMetadata && networkMetadata.symbol.length > 2 && <br />}
             {networkMetadata?.symbol}
           </Text>
         </Flex>
@@ -104,9 +113,11 @@ export const ConnectButton: React.FC<{
           px={6}
           borderRadius="8px"
           leftIcon={
-            error || switchError 
-            ? <Icon as={FiAlertTriangle} />
-            : <Icon as={IoWalletOutline} />
+            error || switchError ? (
+              <Icon as={FiAlertTriangle} />
+            ) : (
+              <Icon as={IoWalletOutline} />
+            )
           }
           onClick={onOpen}
           iconSpacing={3}

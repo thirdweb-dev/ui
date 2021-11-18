@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { 
-  Flex, 
-  Stack,
-  Heading,
-  Input,
-  Text,
-  Divider,
-  Button,
+import {
   AspectRatio,
+  Button,
+  Divider,
+  Flex,
+  Heading,
   Image,
-  Spinner
+  Input,
+  Spinner,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
+import React, { useState } from "react";
 import { useWeb3 } from "../..";
 
 export const ModalDisconnected: React.FC = () => {
@@ -77,9 +77,10 @@ export const ModalDisconnected: React.FC = () => {
         </Stack>
       )}
 
-      {connectors.includes("magic") && connectors.some((connector) => connector !== "magic") && (
-        <Divider mt="32px" mb="24px" width="md" alignSelf="center" />
-      )}
+      {connectors.includes("magic") &&
+        connectors.some((connector) => connector !== "magic") && (
+          <Divider mt="32px" mb="24px" width="md" alignSelf="center" />
+        )}
 
       {connectors.some((connector) => connector !== "magic") && (
         <Stack spacing={4}>
@@ -141,5 +142,5 @@ export const ModalDisconnected: React.FC = () => {
         </Stack>
       )}
     </Flex>
-  )
-}
+  );
+};

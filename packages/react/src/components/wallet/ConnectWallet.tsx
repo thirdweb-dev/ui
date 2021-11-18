@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { ButtonProps } from "@chakra-ui/button";
 import {
   Flex,
@@ -9,6 +8,7 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
+import React from "react";
 import { useWeb3 } from "../../hooks";
 import { ConnectButton } from "./ConnectButton";
 import { ModalConnected } from "./ModalConnected";
@@ -21,23 +21,14 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
   return (
     <>
       <ConnectButton isOpen={isOpen} onOpen={onOpen} {...props} />
-      <Modal 
-        isOpen={isOpen} 
-        onClose={onClose} 
-        isCentered 
-        size="md" 
-      >
+      <Modal isOpen={isOpen} onClose={onClose} isCentered size="md">
         <ModalOverlay />
         <ModalContent pb={4} bg="gray.50">
           <ModalCloseButton />
 
           <ModalBody pt="24px">
             <Flex direction="column">
-              {connector ? (
-                <ModalConnected />
-              ) : (
-                <ModalDisconnected />
-              )}
+              {connector ? <ModalConnected /> : <ModalDisconnected />}
             </Flex>
           </ModalBody>
         </ModalContent>

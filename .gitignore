@@ -2,3 +2,4 @@ node_modules/
 dist/
 .next/
 .parcel-cache/
+yarn-error.log

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useThirdwebContext } from "../components/providers/Web3Provider";
 
 const defaultChainAddConfig = {
-  1: { 
+  1: {
     chainId: "0x1",
     chainName: "Ethereum Mainnet",
     nativeCurrency: {
@@ -12,9 +12,7 @@ const defaultChainAddConfig = {
       symbol: "ETH",
       decimals: 18,
     },
-    rpcUrls: [
-      "https://main-light.eth.linkpool.io/"
-    ],
+    rpcUrls: ["https://main-light.eth.linkpool.io/"],
   },
   4: {
     chainId: "0x4",
@@ -24,9 +22,7 @@ const defaultChainAddConfig = {
       symbol: "ETH",
       decimals: 18,
     },
-    rpcUrls: [
-      "https://rinkeby-light.eth.linkpool.io/"
-    ],
+    rpcUrls: ["https://rinkeby-light.eth.linkpool.io/"],
   },
   137: {
     chainId: "0x89",
@@ -50,9 +46,7 @@ const defaultChainAddConfig = {
       symbol: "FTM",
       decimals: 18,
     },
-    rpcUrls: [
-      "https://rpc.ftm.tools/"
-    ],
+    rpcUrls: ["https://rpc.ftm.tools/"],
   },
   43114: {
     chainId: "0xa86a",
@@ -62,9 +56,7 @@ const defaultChainAddConfig = {
       symbol: "AVAX",
       decimals: 18,
     },
-    rpcUrls: [
-      "https://api.avax.network/ext/bc/C/rpc"
-    ],
+    rpcUrls: ["https://api.avax.network/ext/bc/C/rpc"],
   },
   80001: {
     chainId: "0x13881",
@@ -74,11 +66,9 @@ const defaultChainAddConfig = {
       symbol: "MATIC",
       decimals: 18,
     },
-    rpcUrls: [
-      "https://rpc-endpoints.superfluid.dev/mumbai"
-    ],
-  }
-}
+    rpcUrls: ["https://rpc-endpoints.superfluid.dev/mumbai"],
+  },
+};
 
 export function useSwitchNetwork() {
   const { chainAddConfig } = useThirdwebContext();
@@ -89,18 +79,17 @@ export function useSwitchNetwork() {
 
   useEffect(() => {
     const getProvider = async () => {
-      const connectorProvider = await connector?.getProvider();
-      setConnectorProvider(connectorProvider);
-    }
+      setConnectorProvider(await connector?.getProvider());
+    };
 
     if (connector) {
       getProvider();
     }
-  }, [connector])
+  }, [connector]);
 
   useEffect(() => {
     setSwitchError(null);
-  }, [chainId, account])
+  }, [chainId, account]);
 
   const canAttemptSwitch = useMemo(() => {
     return !!connectorProvider?.request;
@@ -158,7 +147,7 @@ export function useSwitchNetwork() {
         setIsSwitching(false);
       }
     },
-    [chainAddConfig, connectorProvider, library, chainId],
+    [chainAddConfig, connectorProvider, chainId],
   );
 
   return {

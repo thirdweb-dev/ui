@@ -4,7 +4,7 @@ import invariant from "tiny-invariant";
 import {
   ConnectorOptions,
   ConnectorType,
-  useThirdwebContext
+  useThirdwebContext,
 } from "../components/providers/Web3Provider";
 
 export type ConnectorActivateOptions = {
@@ -27,14 +27,17 @@ export function useConnectWallet() {
       connectorType: TConnectorType,
       connectOptions?: ConnectorActivateOptions[TConnectorType],
     ) => {
-      invariant(connectors[connectorType], `
+      invariant(
+        connectors[connectorType],
+        `
         Invalid connect() call for connector: ${connectorType}. 
         This connector is not defined on the <ThirdwebContext>.
-      `);
+      `,
+      );
 
-      const connectorOptions = connectors[connectorType] 
+      const connectorOptions = connectors[connectorType]
         ? { ...connectors[connectorType], supportedChainIds }
-        : { supportedChainIds }
+        : { supportedChainIds };
 
       switch (connectorType) {
         case "injected": {
@@ -42,7 +45,9 @@ export function useConnectWallet() {
             "@web3-react/injected-connector"
           );
           return await activate(
-            new InjectedConnector(connectorOptions as ConnectorOptions["injected"])
+            new InjectedConnector(
+              connectorOptions as ConnectorOptions["injected"],
+            ),
           );
         }
         case "magic": {
@@ -50,11 +55,11 @@ export function useConnectWallet() {
             "@web3-react/magic-connector"
           );
           const { email } = connectOptions as ConnectorActivateOptions["magic"];
-          const connectorOptions = connectors[
+          const _connectorOptions = connectors[
             connectorType
           ] as ConnectorOptions["magic"];
           return await activate(
-            new MagicConnector({ ...connectorOptions, email }),
+            new MagicConnector({ ..._connectorOptions, email }),
           );
         }
         case "walletlink": {
@@ -62,7 +67,9 @@ export function useConnectWallet() {
             "@web3-react/walletlink-connector"
           );
           return await activate(
-            new WalletLinkConnector(connectorOptions as ConnectorOptions["walletlink"])
+            new WalletLinkConnector(
+              connectorOptions as ConnectorOptions["walletlink"],
+            ),
           );
         }
         case "walletconnect": {
@@ -70,13 +77,15 @@ export function useConnectWallet() {
             "@web3-react/walletconnect-connector"
           );
           return await activate(
-            new WalletConnectConnector(connectorOptions as ConnectorOptions["walletconnect"])
+            new WalletConnectConnector(
+              connectorOptions as ConnectorOptions["walletconnect"],
+            ),
           );
         }
         default:
           throw new Error(`Unsupported connector: ${connectorType}`);
       }
     },
-    [connectors, activate],
+    [connectors, supportedChainIds, activate],
   );
 }
