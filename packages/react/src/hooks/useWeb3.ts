@@ -66,7 +66,7 @@ const defaultNetworkMetadata = {
     iconUrl: 
       "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
     symbol: "MATIC",
-    isTestnet: false,
+    isTestnet: true,
   },
 };
 

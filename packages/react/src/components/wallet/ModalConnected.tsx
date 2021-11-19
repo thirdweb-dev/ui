@@ -16,9 +16,8 @@ import { AddressCopyButton } from "./AddressCopyButton";
 
 export const ModalConnected: React.FC = () => {
   const { supportedChainIds } = useThirdwebContext();
-  const { switchNetwork, switchError } = useSwitchNetwork();
+  const { switchError } = useSwitchNetwork();
   const {
-    chainId,
     connector,
     error,
     address,
@@ -35,47 +34,18 @@ export const ModalConnected: React.FC = () => {
             <Heading as="h4" size="sm" fontWeight="600" mb="12px">
               Switch network
             </Heading>
-            {supportedChainIds.map((cId, index) => (
-              <Flex
-                key={index}
-                alignSelf="center"
-                onClick={() => switchNetwork(cId)}
-                align="center"
-                width="md"
-                px="20px"
-                py="2px"
-                cursor="pointer"
-              >
-                <Flex 
-                  width="100%"
-                  align="center"
-                  borderRadius="25px"
-                  padding="6px"
-                  justify="space-between"
-                  bg={cId === chainId ? "gray.100" : undefined}
-                  _hover={{
-                    bg: "gray.200",
-                  }}
-                >
-                  <Flex align="center">
-                    <Image
-                      src={getNetworkMetadata(cId).iconUrl}
-                      height="36px"
-                      width="36px"
-                      borderRadius="25px"
-                    />
-                    <Text ml="12px" fontWeight="medium" fontSize="14px">
-                      {getNetworkMetadata(cId).chainName}
-                    </Text>
-                  </Flex>
-                  {cId === chainId && (
-                    <Text color="blue.400" fontSize="14px" mr="8px">
-                      Connected
-                    </Text>
-                  )}
-                </Flex>
-              </Flex>
-            ))}
+            {supportedChainIds
+              .filter(cId => !getNetworkMetadata(cId).isTestnet)
+              .map((cId, index) =>
+                <Network index={index} cId={cId} />
+              )
+            }
+            {supportedChainIds
+              .filter(cId => getNetworkMetadata(cId).isTestnet)
+              .map((cId, index) =>
+                <Network index={index} cId={cId} />
+              )
+            }
           </Flex>
 
           <Divider mt="32px" mb="24px" width="md" alignSelf="center" />
@@ -117,3 +87,58 @@ export const ModalConnected: React.FC = () => {
     </Flex>
   );
 };
+
+const Network: React.FC<{
+  index: number;
+  cId: number;
+}> = ({ index, cId }) => {
+  const { chainId, getNetworkMetadata } = useWeb3();
+  const { switchNetwork } = useSwitchNetwork();
+
+  return (
+    <Flex
+      key={index}
+      alignSelf="center"
+      onClick={() => switchNetwork(cId)}
+      align="center"
+      width="md"
+      px="20px"
+      py="2px"
+      cursor="pointer"
+    >
+      <Flex 
+        width="100%"
+        align="center"
+        borderRadius="25px"
+        padding="6px"
+        justify="space-between"
+        bg={cId === chainId ? "gray.100" : undefined}
+        _hover={{
+          bg: "gray.200",
+        }}
+      >
+        <Flex align="center">
+          <Image
+            src={getNetworkMetadata(cId).iconUrl}
+            height="36px"
+            width="36px"
+            borderRadius="25px"
+          />
+          <Text ml="12px" fontWeight="medium" fontSize="14px">
+            {getNetworkMetadata(cId).chainName}
+          </Text>
+          {getNetworkMetadata(cId).isTestnet && (
+            <Text fontSize="14px" color="gray.400">
+              &nbsp;(testnet)
+            </Text>
+          )}
+        </Flex>
+        {cId === chainId && (
+          <Text color="blue.400" fontSize="14px" mr="8px">
+            Connected
+          </Text>
+        )}
+      </Flex>
+    </Flex>
+  )
+}
