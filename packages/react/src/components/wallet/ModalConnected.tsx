@@ -7,7 +7,7 @@ import {
   Heading,
   Image,
   Stack,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import React from "react";
 import { useSwitchNetwork, useWeb3 } from "../..";
@@ -106,7 +106,7 @@ const Network: React.FC<{
       py="2px"
       cursor="pointer"
     >
-      <Flex 
+      <Flex
         width="100%"
         align="center"
         borderRadius="25px"
@@ -140,5 +140,5 @@ const Network: React.FC<{
         )}
       </Flex>
     </Flex>
-  )
-}
+  );
+};
