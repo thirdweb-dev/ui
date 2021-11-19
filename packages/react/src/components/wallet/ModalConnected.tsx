@@ -35,8 +35,9 @@ export const ModalConnected: React.FC = () => {
             <Heading as="h4" size="sm" fontWeight="600" mb="12px">
               Switch network
             </Heading>
-            {supportedChainIds.map((cId) => (
+            {supportedChainIds.map((cId, index) => (
               <Flex
+                key={index}
                 alignSelf="center"
                 onClick={() => switchNetwork(cId)}
                 align="center"
