@@ -63,8 +63,8 @@ export const ConnectButton: React.FC<{
           borderRadius="25px"
           borderWidth="1px"
           borderColor="gray.300"
-          padding="5px"
-          height="50px"
+          padding="6px"
+          height="48px"
           align="center"
           onClick={onOpen}
           cursor="pointer"
@@ -76,8 +76,8 @@ export const ConnectButton: React.FC<{
           <Stack flexShrink={0} direction="row" align="center" pr={3}>
             {networkMetadata?.iconUrl && (
               <Image
-                height="40px"
-                width="40px"
+                height="36px"
+                width="36px"
                 borderRadius="25px"
                 src={networkMetadata.iconUrl}
               />

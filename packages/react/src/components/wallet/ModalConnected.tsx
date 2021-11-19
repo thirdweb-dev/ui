@@ -50,7 +50,7 @@ export const ModalConnected: React.FC = () => {
                   width="100%"
                   align="center"
                   borderRadius="25px"
-                  padding="8px"
+                  padding="6px"
                   justify="space-between"
                   bg={cId === chainId ? "gray.100" : undefined}
                   _hover={{
@@ -60,7 +60,7 @@ export const ModalConnected: React.FC = () => {
                   <Flex align="center">
                     <Image
                       src={getNetworkMetadata(cId).iconUrl}
-                      height="36x"
+                      height="36px"
                       width="36px"
                       borderRadius="25px"
                     />
