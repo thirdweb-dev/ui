@@ -35,33 +35,46 @@ export const ModalConnected: React.FC = () => {
             <Heading as="h4" size="sm" fontWeight="600" mb="12px">
               Switch network
             </Heading>
-            {supportedChainIds
-              .filter((id) => id !== chainId)
-              .map((cId) => (
-                <Flex
-                  alignSelf="center"
-                  onClick={() => switchNetwork(cId)}
+            {supportedChainIds.map((cId) => (
+              <Flex
+                alignSelf="center"
+                onClick={() => switchNetwork(cId)}
+                align="center"
+                width="md"
+                px="20px"
+                py="2px"
+                cursor="pointer"
+              >
+                <Flex 
+                  width="100%"
                   align="center"
-                  width="md"
+                  borderRadius="25px"
+                  padding="8px"
+                  justify="space-between"
+                  bg={cId === chainId ? "gray.100" : undefined}
                   _hover={{
-                    bg: "gray.100",
+                    bg: "gray.200",
                   }}
-                  height="50px"
-                  px="20px"
-                  my="4px"
-                  cursor="pointer"
                 >
-                  <Image
-                    src={getNetworkMetadata(cId).iconUrl}
-                    height="36x"
-                    width="36px"
-                    borderRadius="25px"
-                  />
-                  <Text ml="12px" fontWeight="medium" fontSize="14px">
-                    {getNetworkMetadata(cId).chainName}
-                  </Text>
+                  <Flex align="center">
+                    <Image
+                      src={getNetworkMetadata(cId).iconUrl}
+                      height="36x"
+                      width="36px"
+                      borderRadius="25px"
+                    />
+                    <Text ml="12px" fontWeight="medium" fontSize="14px">
+                      {getNetworkMetadata(cId).chainName}
+                    </Text>
+                  </Flex>
+                  {cId === chainId && (
+                    <Text color="blue.400" fontSize="14px" mr="8px">
+                      Connected
+                    </Text>
+                  )}
                 </Flex>
-              ))}
+              </Flex>
+            ))}
           </Flex>
 
           <Divider mt="32px" mb="24px" width="md" alignSelf="center" />
