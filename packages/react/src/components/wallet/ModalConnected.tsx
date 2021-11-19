@@ -27,8 +27,6 @@ export const ModalConnected: React.FC = () => {
     getNetworkMetadata,
   } = useWeb3();
 
-  console.log(connector);
-
   return (
     <Flex direction="column">
       {!connector?.magic && !connector?.walletConnectProvider && (
