@@ -35,17 +35,15 @@ export const ModalConnected: React.FC = () => {
               Switch network
             </Heading>
             {supportedChainIds
-              .filter(cId => !getNetworkMetadata(cId).isTestnet)
-              .map((cId, index) =>
+              .filter((cId) => !getNetworkMetadata(cId).isTestnet)
+              .map((cId, index) => (
                 <Network index={index} cId={cId} />
-              )
-            }
+              ))}
             {supportedChainIds
-              .filter(cId => getNetworkMetadata(cId).isTestnet)
-              .map((cId, index) =>
+              .filter((cId) => getNetworkMetadata(cId).isTestnet)
+              .map((cId, index) => (
                 <Network index={index} cId={cId} />
-              )
-            }
+              ))}
           </Flex>
 
           <Divider mt="32px" mb="24px" width="md" alignSelf="center" />

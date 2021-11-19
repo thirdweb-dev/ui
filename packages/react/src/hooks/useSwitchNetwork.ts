@@ -6,7 +6,7 @@ import { useThirdwebContext } from "../components/providers/Web3Provider";
 const defaultChainAddConfig = {
   1: {
     chainId: "0x1",
-    chainName: "Ethereum Mainnet",
+    chainName: "Mainnet",
     nativeCurrency: {
       name: "Ethereum",
       symbol: "ETH",
@@ -16,7 +16,7 @@ const defaultChainAddConfig = {
   },
   4: {
     chainId: "0x4",
-    chainName: "Rinkeby Tesnet",
+    chainName: "Rinkeby (ETH Testnet)",
     nativeCurrency: {
       name: "Ethereum",
       symbol: "ETH",
@@ -26,7 +26,7 @@ const defaultChainAddConfig = {
   },
   137: {
     chainId: "0x89",
-    chainName: "Matic Mainnet",
+    chainName: "Polygon",
     nativeCurrency: {
       name: "Matic",
       symbol: "MATIC",
@@ -40,7 +40,7 @@ const defaultChainAddConfig = {
   },
   250: {
     chainId: "0xfa",
-    chainName: "Fantom Opera",
+    chainName: "Fantom",
     nativeCurrency: {
       name: "Fantom",
       symbol: "FTM",
@@ -50,7 +50,7 @@ const defaultChainAddConfig = {
   },
   43114: {
     chainId: "0xa86a",
-    chainName: "Avalanche Mainnet",
+    chainName: "Avalanche",
     nativeCurrency: {
       name: "Avalanche",
       symbol: "AVAX",
@@ -60,7 +60,7 @@ const defaultChainAddConfig = {
   },
   80001: {
     chainId: "0x13881",
-    chainName: "Matic Mumbai",
+    chainName: "Mumbai (Matic Testnet)",
     nativeCurrency: {
       name: "Matic",
       symbol: "MATIC",
