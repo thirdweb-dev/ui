@@ -62,7 +62,7 @@ export interface ThirdwebContext {
 }
 
 function getLibrary(provider: any): Web3Provider {
-  return new Web3Provider(provider);
+  return new Web3Provider(provider, "any");
 }
 
 const ThirdwebContext = createContext<ThirdwebContext>({
