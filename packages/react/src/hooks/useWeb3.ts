@@ -27,38 +27,46 @@ export interface Web3ContextInterface {
 
 const defaultNetworkMetadata = {
   1: {
-    chainName: "Ethereum Mainnet",
+    chainName: "Ethereum",
     iconUrl:
       "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
     symbol: "ETH",
+    isTestnet: false,
   },
   4: {
-    chainName: "Rinkeby Testnet",
+    chainName: "Rinkeby",
     iconUrl:
       "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
     symbol: "ETH",
+    isTestnet: true,
   },
   137: {
-    chainName: "Matic Mainnet",
-    iconUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
+    chainName: "Polygon",
+    iconUrl: 
+      "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
     symbol: "MATIC",
+    isTestnet: false,
   },
   250: {
-    chainName: "Fantom Opera",
+    chainName: "Fantom",
     iconUrl:
       "https://icodrops.com/wp-content/uploads/2018/04/teryT6Hw_400x400.jpg",
     symbol: "FTM",
+    isTestnet: false,
   },
   43114: {
     chainName: "Avalanche",
     iconUrl:
       "https://assets.website-files.com/6059b554e81c705f9dd2dd32/60ec6a944b52e3e96e16af68_Avalanche_Square_Red_Circle.png",
     symbol: "AVAX",
+    isTestnet: false,
   },
   80001: {
-    chainName: "Matic Mumbai",
-    iconUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
+    chainName: "Mumbai",
+    iconUrl: 
+      "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
     symbol: "MATIC",
+    isTestnet: false,
   },
 };
 

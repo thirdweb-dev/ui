@@ -51,6 +51,7 @@ export interface NetworkMetadata {
   chainName: string;
   iconUrl: string;
   symbol: string;
+  isTestnet: boolean;
 }
 
 export interface ThirdwebContext {
