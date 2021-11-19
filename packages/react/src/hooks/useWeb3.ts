@@ -42,8 +42,7 @@ const defaultNetworkMetadata = {
   },
   137: {
     chainName: "Polygon",
-    iconUrl: 
-      "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
+    iconUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
     symbol: "MATIC",
     isTestnet: false,
   },
@@ -63,8 +62,7 @@ const defaultNetworkMetadata = {
   },
   80001: {
     chainName: "Mumbai",
-    iconUrl: 
-      "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
+    iconUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
     symbol: "MATIC",
     isTestnet: true,
   },
