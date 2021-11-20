@@ -88,7 +88,7 @@ export const ModalDisconnected: React.FC = () => {
             Connect a{address ? " different" : ""} wallet
           </Heading>
 
-          {connectors.includes("injected") && (
+          {connectors.includes("injected") && typeof (window as any).ethereum !== "undefined" && (
             <Button
               display={{ base: "none", sm: "flex" }}
               size="lg"
