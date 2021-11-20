@@ -3112,9 +3112,9 @@
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
 "@types/node@*":
-  version "16.11.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.8.tgz#a1aeb23f0aa33cb111e64ccaa1687b2ae0423b69"
-  integrity sha512-hmT5gfpRkkHr7DZZHMf3jBe/zNcVGN+jXSL2f8nAsYfBPxQFToKwQlS/zES4Sjp488Bi73i+p6bvrNRRGU0x9Q==
+  version "16.11.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.9.tgz#879be3ad7af29f4c1a5c433421bf99fab7047185"
+  integrity sha512-MKmdASMf3LtPzwLyRrFjtFFZ48cMf8jmX5VRYrDQiJa8Ybu5VAmkqBWqKU8fdCwD8ysw4mQ9nrEHvzg6gunR7A==
 
 "@types/node@^12.7.1":
   version "12.20.37"
@@ -5137,9 +5137,9 @@ ejs@^3.1.6:
     jake "^10.6.1"
 
 electron-to-chromium@^1.3.723, electron-to-chromium@^1.3.896:
-  version "1.3.902"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.902.tgz#926726705c17f9531be23bda545b819b35da665d"
-  integrity sha512-zFv5jbtyIr+V9FuT9o439isXbkXQ27mJqZfLXpBKzXugWE8+3RotHbXJlli0/r+Rvdlkut0OOMzeOWLAjH0jCw==
+  version "1.3.903"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.903.tgz#e2d3c3809f4ef05fdbe5cc88969dfc94b1bd15b9"
+  integrity sha512-+PnYAyniRRTkNq56cqYDLq9LyklZYk0hqoDy9GpcU11H5QjRmFZVDbxtgHUMK/YzdNTcn1XWP5gb+hFlSCr20g==
 
 elliptic@6.5.4, elliptic@^6.5.2, elliptic@^6.5.3:
   version "6.5.4"
@@ -5964,9 +5964,9 @@ fragment-cache@^0.2.1:
     map-cache "^0.2.2"
 
 framer-motion@^5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-5.3.0.tgz#22956eebab7a14032b3467a76822b946f8ff9bd0"
-  integrity sha512-b3AIRy5lvJ4Fo2ZJ3nNRl7U8qF+uVG4VGY/Gi+fwLVxSqxkkX1hLuXV67uXxn+ideGUs0wRj+X7DzQEfvQsmaw==
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-5.3.1.tgz#5588f904f16b20a617f112ee2b10573e7392c488"
+  integrity sha512-wBqW2eAoIxGcp6zhIPlzHq9b6FqWG3Xir6ovgg/HZgbKajGLfcfYRsQU6qri0U53Qov5QZwb7CkfMjl0UIxL4A==
   dependencies:
     framesync "6.0.1"
     hey-listen "^1.0.8"
@@ -7253,16 +7253,15 @@ lines-and-columns@^1.1.6:
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
 lmdb-store@^1.5.5:
-  version "1.6.13"
-  resolved "https://registry.yarnpkg.com/lmdb-store/-/lmdb-store-1.6.13.tgz#ae4c9d4faccbc07aaf47a79664f703799fc61221"
-  integrity sha512-WJPNfzSZXD6anGFdIEK/wq/HzAU5kfi7+LSUSzQ2Qo9uV9REeIYPGqWX+FKl/QCb6qK4ie1D4f44aEvvv7M7rw==
+  version "1.6.14"
+  resolved "https://registry.yarnpkg.com/lmdb-store/-/lmdb-store-1.6.14.tgz#8aa5f36fb04195f8639a3b01b32f6696867f2bc9"
+  integrity sha512-4woZfvfgolMEngjoMJrwePjdLotr3QKGJsDWURlJmKBed5JtE00IfAKo7ryPowl4ksGcs21pcdLkwrPnKomIuA==
   dependencies:
+    msgpackr "^1.5.0"
     nan "^2.14.2"
     node-gyp-build "^4.2.3"
     ordered-binary "^1.0.0"
     weak-lru-cache "^1.0.0"
-  optionalDependencies:
-    msgpackr "^1.4.7"
 
 loader-utils@1.2.3:
   version "1.2.3"
@@ -7656,10 +7655,10 @@ msgpackr-extract@^1.0.14:
     nan "^2.14.2"
     node-gyp-build "^4.2.3"
 
-msgpackr@^1.4.7:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/msgpackr/-/msgpackr-1.5.0.tgz#a4495ea0e2ba7bca909463e45fb852c76540f464"
-  integrity sha512-GWMowA95SOMkrFM+uKF/9MOIoZbDwoZ09XEqSoOwyt/IzohTfxfOJrIGW0fInvcZUEoZ0wHCwVg4K0UOOUA49A==
+msgpackr@^1.5.0:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/msgpackr/-/msgpackr-1.5.1.tgz#2a8e39d25458406034b8cb50dc7d6a7abd3dfff2"
+  integrity sha512-I1CXFG8BYYSeIhtDlHpUVMsdDiyvP9JAh1d9QoBnkPx3ETPeH/1lR14hweM9GETs09wCWlaOyhtXxIc9boxAAA==
   optionalDependencies:
     msgpackr-extract "^1.0.14"
 
@@ -9603,9 +9602,9 @@ source-map-resolve@^0.5.0:
     urix "^0.1.0"
 
 source-map-support@^0.5.16, source-map-support@~0.5.20:
-  version "0.5.20"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.20.tgz#12166089f8f5e5e8c56926b377633392dd2cb6c9"
-  integrity sha512-n1lZZ8Ve4ksRqizaBQgxXDgKwttHDhyfQjA6YZZn8+AroHbsIz+JjwxQDxbp+7y5OYCI8t1Yk7etjD9CRd2hIw==
+  version "0.5.21"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.21.tgz#04fe7c7f9e1ed2d662233c28cb2b35b9f63f6e4f"
+  integrity sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==
   dependencies:
     buffer-from "^1.0.0"
     source-map "^0.6.0"
