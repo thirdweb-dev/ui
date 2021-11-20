@@ -5,68 +5,89 @@ import { useThirdwebContext } from "../components/providers/Web3Provider";
 
 const defaultChainAddConfig = {
   1: {
-    chainId: "0x1",
+    chainId: `0x${Number(1).toString(16)}`,
     chainName: "Mainnet",
     nativeCurrency: {
       name: "Ethereum",
       symbol: "ETH",
       decimals: 18,
     },
-    rpcUrls: ["https://main-light.eth.linkpool.io/"],
+    rpcUrls: [
+      "https://main-light.eth.linkpool.io/"
+    ],
   },
   4: {
-    chainId: "0x4",
+    chainId: `0x${Number(4).toString(16)}`,
     chainName: "Rinkeby (ETH Testnet)",
     nativeCurrency: {
       name: "Ethereum",
       symbol: "ETH",
       decimals: 18,
     },
-    rpcUrls: ["https://rinkeby-light.eth.linkpool.io/"],
+    rpcUrls: [
+      "https://rinkeby-light.eth.linkpool.io/",
+    ],
   },
   137: {
-    chainId: "0x89",
-    chainName: "Polygon",
+    chainId: `0x${Number(137).toString(16)}`,
+    chainName: "Polygon Mainnet (Matic)",
     nativeCurrency: {
       name: "Matic",
       symbol: "MATIC",
       decimals: 18,
     },
     rpcUrls: [
-      "https://rpc-mainnet.matic.network/",
-      "https://rpc-mainnet.maticvigil.com/",
-      "https://rpc-mainnet.matic.quiknode.pro/",
+      "https://polygon-rpc.com",
+    ],
+    blockExplorerUrls: [
+      "https://polygonscan.com"
     ],
   },
   250: {
-    chainId: "0xfa",
-    chainName: "Fantom",
+    chainId: `0x${Number(250).toString(16)}`,
+    chainName: "Fantom Opera",
     nativeCurrency: {
       name: "Fantom",
       symbol: "FTM",
       decimals: 18,
     },
-    rpcUrls: ["https://rpc.ftm.tools/"],
+    rpcUrls: [
+      "https://rpc.ftm.tools"
+    ],
+    blockExplorerUrls: [
+      "https://ftmscan.com"
+    ],
   },
   43114: {
-    chainId: "0xa86a",
-    chainName: "Avalanche",
+    chainId: `0x${Number(43114).toString(16)}`,
+    chainName: "Avalanche Mainnet C-Chain",
     nativeCurrency: {
       name: "Avalanche",
       symbol: "AVAX",
       decimals: 18,
     },
-    rpcUrls: ["https://api.avax.network/ext/bc/C/rpc"],
+    rpcUrls: [
+      "https://api.avax.network/ext/bc/C/rpc",
+    ],
+    blockExplorerUrls: [
+      "https://cchain.explorer.avax.network",
+    ],
   },
   80001: {
-    chainId: "0x13881",
-    chainName: "Mumbai (Matic Testnet)",
+    chainId: `0x${Number(80001).toString(16)}`,
+    chainName: "Polygon Mumbai Testnet",
     nativeCurrency: {
       name: "Matic",
       symbol: "MATIC",
       decimals: 18,
     },
-    rpcUrls: ["https://rpc-endpoints.superfluid.dev/mumbai"],
+    rpcUrls: [
+      "https://rpc-mumbai.maticvigil.com",
+      "https://rpc-mumbai.matic.today",
+    ],
+    blockExplorerUrls: [
+      "https://mumbai.polygonscan.com"
+    ],
   },
 };
 
