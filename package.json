@@ -49,6 +49,7 @@
   },
   "resolutions": {
     "glob-parent": "^6.0.2",
-    "ansi-regex": "^5.0.1"
+    "ansi-regex": "^5.0.1",
+    "json-schema": "^0.4.0"
   }
 }
