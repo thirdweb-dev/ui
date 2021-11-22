@@ -37,12 +37,12 @@ export const ModalConnected: React.FC = () => {
             {supportedChainIds
               .filter((cId) => !getNetworkMetadata(cId).isTestnet)
               .map((cId, index) => (
-                <Network index={index} cId={cId} />
+                <Network key={index} index={index} cId={cId} />
               ))}
             {supportedChainIds
               .filter((cId) => getNetworkMetadata(cId).isTestnet)
               .map((cId, index) => (
-                <Network index={index} cId={cId} />
+                <Network key={index} index={index} cId={cId} />
               ))}
           </Flex>
 
