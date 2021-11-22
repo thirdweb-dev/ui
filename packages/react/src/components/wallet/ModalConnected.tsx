@@ -20,6 +20,7 @@ export const ModalConnected: React.FC<{
   const { supportedChainIds } = useThirdwebContext();
   const { switchError } = useSwitchNetwork();
   const {
+    chainId,
     connector,
     error,
     address,
@@ -46,6 +47,19 @@ export const ModalConnected: React.FC<{
               .map((cId, index) => (
                 <Network key={index} index={index} cId={cId} />
               ))}
+          </Flex>
+
+          <Divider mt="32px" mb="24px" width="md" alignSelf="center" />
+        </>
+      )}
+
+      {disableNetworkSwitching && (
+        <>
+          <Flex direction="column">
+            <Heading as="h4" size="sm" fontWeight="600" mb="12px">
+              Connected network
+            </Heading>
+            <Network index={0} cId={chainId || 0} />
           </Flex>
 
           <Divider mt="32px" mb="24px" width="md" alignSelf="center" />
