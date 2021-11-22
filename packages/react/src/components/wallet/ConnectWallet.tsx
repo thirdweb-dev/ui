@@ -7,35 +7,49 @@ import {
   ModalContent,
   ModalOverlay,
   useDisclosure,
+  usePrevious,
 } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useWeb3 } from "../../hooks";
 import { ConnectButton } from "./ConnectButton";
 import { ModalConnected } from "./ModalConnected";
 import { ModalDisconnected } from "./ModalDisconnected";
 
-export const ConnectWallet: React.FC<ButtonProps & {
-  disableNetworkSwitching?: boolean;
-}> = ({ disableNetworkSwitching, ...props }) => {
+export const ConnectWallet: React.FC<
+  ButtonProps & {
+    disableNetworkSwitching?: boolean;
+  }
+> = ({ disableNetworkSwitching, ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { chainId, connector } = useWeb3();
-  const [connected, setConnected] = useState(false);
+  const { chainId, address, connector } = useWeb3();
 
+  const previousConnector = usePrevious(connector);
+  const previousChainId = usePrevious(chainId);
+  const previousAddress = usePrevious(address);
+
+  // if chain id changes, then close modal
   useEffect(() => {
-    if (onClose) {
+    if (previousChainId !== chainId) {
       onClose();
     }
-  }, [chainId, onClose]);
+  }, [chainId, previousChainId, onClose]);
 
+  // if chain id changes, then close modal
   useEffect(() => {
-    if (connected && !connector) {
-      setConnected(false);
-      onClose();
-    } else if (!connected && connector) {
-      setConnected(true);
+    if (previousAddress !== address) {
       onClose();
     }
-  }, [connector]);
+  }, [onClose, previousAddress, address]);
+
+  // if connector changes, then close modal
+  useEffect(() => {
+    if (
+      (connector && !previousConnector) ||
+      (!connector && previousConnector)
+    ) {
+      onClose();
+    }
+  }, [connector, onClose, previousConnector]);
 
   return (
     <>
@@ -47,11 +61,13 @@ export const ConnectWallet: React.FC<ButtonProps & {
 
           <ModalBody pt="24px">
             <Flex direction="column">
-              {connector ?
-                <ModalConnected disableNetworkSwitching={disableNetworkSwitching} />
-              :
+              {connector ? (
+                <ModalConnected
+                  disableNetworkSwitching={disableNetworkSwitching}
+                />
+              ) : (
                 <ModalDisconnected />
-              }
+              )}
             </Flex>
           </ModalBody>
         </ModalContent>
