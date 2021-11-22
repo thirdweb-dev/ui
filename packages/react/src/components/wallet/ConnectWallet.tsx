@@ -14,7 +14,9 @@ import { ConnectButton } from "./ConnectButton";
 import { ModalConnected } from "./ModalConnected";
 import { ModalDisconnected } from "./ModalDisconnected";
 
-export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
+export const ConnectWallet: React.FC<ButtonProps & {
+  disableNetworkSwitching?: boolean;
+}> = ({ disableNetworkSwitching, ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { chainId, connector } = useWeb3();
   const [connected, setConnected] = useState(false);
@@ -45,7 +47,11 @@ export const ConnectWallet: React.FC<ButtonProps> = ({ ...props }) => {
 
           <ModalBody pt="24px">
             <Flex direction="column">
-              {connector ? <ModalConnected /> : <ModalDisconnected />}
+              {connector ?
+                <ModalConnected disableNetworkSwitching={disableNetworkSwitching} />
+              :
+                <ModalDisconnected />
+              }
             </Flex>
           </ModalBody>
         </ModalContent>

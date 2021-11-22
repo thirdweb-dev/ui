@@ -14,7 +14,9 @@ import { useSwitchNetwork, useWeb3 } from "../..";
 import { useThirdwebContext } from "../providers/Web3Provider";
 import { AddressCopyButton } from "./AddressCopyButton";
 
-export const ModalConnected: React.FC = () => {
+export const ModalConnected: React.FC<{
+  disableNetworkSwitching?: boolean;
+}> = ({ disableNetworkSwitching }) => {
   const { supportedChainIds } = useThirdwebContext();
   const { switchError } = useSwitchNetwork();
   const {
@@ -28,7 +30,7 @@ export const ModalConnected: React.FC = () => {
 
   return (
     <Flex direction="column">
-      {!connector?.magic && !connector?.walletConnectProvider && (
+      {!disableNetworkSwitching && !connector?.magic && !connector?.walletConnectProvider && (
         <>
           <Flex direction="column">
             <Heading as="h4" size="sm" fontWeight="600" mb="12px">
