@@ -31,6 +31,15 @@ export default function Connect() {
         <br />
         You can interact with the component below.
       </Text>
+
+      <Text mb="12px" fontWeight="bold">
+        Network Switching Enabled:
+      </Text>
+      <ConnectWallet />
+
+      <Text mt="48px" mb="12px" fontWeight="bold">
+        Network Switching Disabled:
+      </Text>
       <ConnectWallet disableNetworkSwitching />
     </Flex>
   );
