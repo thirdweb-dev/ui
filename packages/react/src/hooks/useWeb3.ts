@@ -75,7 +75,6 @@ export function useWeb3(): Web3ContextInterface {
   const { library, connector, account, error, chainId, deactivate } =
     web3Context;
 
-
   useEffect(() => {
     if (error?.message.includes("The user rejected the request.")) {
       deactivate();
