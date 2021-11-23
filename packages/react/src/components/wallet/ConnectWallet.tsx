@@ -21,7 +21,7 @@ export const ConnectWallet: React.FC<
   }
 > = ({ disableNetworkSwitching, ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { chainId, address, connector } = useWeb3();
+  const { chainId, address, connector, error } = useWeb3();
 
   const previousConnector = usePrevious(connector);
   const previousChainId = usePrevious(chainId);
@@ -61,7 +61,7 @@ export const ConnectWallet: React.FC<
 
           <ModalBody pt="24px">
             <Flex direction="column">
-              {connector ? (
+              {connector && !error ? (
                 <ModalConnected
                   disableNetworkSwitching={disableNetworkSwitching}
                 />

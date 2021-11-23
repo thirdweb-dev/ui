@@ -88,23 +88,25 @@ export const ModalDisconnected: React.FC = () => {
             Connect a{address ? " different" : ""} wallet
           </Heading>
 
-          {connectors.includes("injected") && typeof (window as any).ethereum !== "undefined" && (
-            <Button
-              display={{ base: "none", sm: "flex" }}
-              size="lg"
-              variant="outline"
-              isFullWidth
-              iconSpacing="auto"
-              rightIcon={
-                <AspectRatio ratio={1} w={6}>
-                  <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
-                </AspectRatio>
-              }
-              onClick={() => connectWallet("injected")}
-            >
-              MetaMask
-            </Button>
-          )}
+          {connectors.includes("injected") &&
+            typeof window !== "undefined" &&
+            "ethereum" in window && (
+              <Button
+                display={{ base: "none", sm: "flex" }}
+                size="lg"
+                variant="outline"
+                isFullWidth
+                iconSpacing="auto"
+                rightIcon={
+                  <AspectRatio ratio={1} w={6}>
+                    <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
+                  </AspectRatio>
+                }
+                onClick={() => connectWallet("injected")}
+              >
+                MetaMask
+              </Button>
+            )}
 
           {connectors.includes("walletconnect") && (
             <Button
