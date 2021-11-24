@@ -11,8 +11,8 @@ import {
 import React, { useMemo } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import { IoWalletOutline } from "react-icons/io5";
-import { useSwitchNetwork } from "../../hooks/useSwitchNetwork";
-import { useWeb3 } from "../../hooks/useWeb3";
+import { useSwitchNetwork } from "../../../../hooks/src/useSwitchNetwork";
+import { useWeb3 } from "../../../../hooks/src/useWeb3";
 import { shortenAddress } from "../../utils/shortenAddress";
 
 export const ConnectButton: React.FC<{

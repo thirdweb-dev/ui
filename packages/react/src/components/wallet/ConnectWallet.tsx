@@ -10,7 +10,7 @@ import {
   usePrevious,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import { useWeb3 } from "../../hooks";
+import { useWeb3 } from "../../../../hooks/src";
 import { ConnectButton } from "./ConnectButton";
 import { ModalConnected } from "./ModalConnected";
 import { ModalDisconnected } from "./ModalDisconnected";

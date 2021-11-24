@@ -31,17 +31,9 @@
     "@chakra-ui/react": "^1.7.0",
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
-    "@ethersproject/providers": "^5.5.0",
-    "@ethersproject/units": "^5.5.0",
     "@types/styled-components": "^5.1.15",
-    "@web3-react/core": "^6.1.9",
-    "@web3-react/injected-connector": "^6.0.7",
-    "@web3-react/magic-connector": "^6.1.9",
-    "@web3-react/walletconnect-connector": "^6.2.8",
-    "@web3-react/walletlink-connector": "^6.2.8",
     "framer-motion": "^5.3.0",
     "react-icons": "^4.3.1",
-    "styled-components": "^5.3.3",
-    "tiny-invariant": "^1.2.0"
+    "styled-components": "^5.3.3"
   }
 }
