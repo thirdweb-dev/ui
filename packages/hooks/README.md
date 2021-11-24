@@ -1,10 +1,10 @@
-# Thirdweb React
+# Thirdweb Hooks
 
 <br>
 
 ## Introduction
 
-Welcome to the Thirdweb Component Library. This package provides you with extensible components to handle the web3 side of your app.
+Welcome to the Thirdweb ReactnHooks Library. This package provides you with extensible react hooks to handle the web3 side of your app.
 
 We simplify the process of integrating web3 into your apps while making sure that you still have all the control you would using other lower level web3 frontend libraries.
 
@@ -12,18 +12,17 @@ Our main features are:
 
 - Support for most commonly used web3 providers including: [MetaMask](https://metamask.io/), [WalletConnect](https://walletconnect.com/), [Coinbase Wallet](https://wallet.coinbase.com/), and [Magic Link](https://magic.link/).
 - An app wide context containing an [ethers.js](https://github.com/ethers-io/ethers.js/) or [web3.js](https://web3js.readthedocs.io/en/v1.5.2/) instance with everything you need to integrate with the blockchain.
-- Easy-to-use plug-and-play components that let you implement complex and fully-featured web3 app setups with only a few lines of code.
 
 <br>
 
 ## Getting Started
 
-To get started with the Thirdweb Component Library, you just need to setup the `ThirdwebProvider` that provides all the context consumed by your app and lets you use our custom components.
+To get started with using our hooks, you just need to setup the `ThirdwebWeb3Provider` that provides all the context consumed by your app.
 
 Setting up this context is as easy as wrapping your app with the following setup:
 
 ```javascript
-import { ThirdwebProvider } from "@3rdweb/react";
+import { ThirdwebWeb3Provider } from "@3rdweb/hooks";
 
 const App = ({ children }) => {
   // Put the ethereum chain ids of the chains you want to support
@@ -55,40 +54,68 @@ const App = ({ children }) => {
    * If you're using Next JS, you'll have to replace children with the Component setup
    */
   return (
-    <ThirdwebProvider 
+    <ThirdwebWeb3Provider 
       supportedChainIds={supportedChainIds}
       connectors={connectors}
     >
       {children}
-    </ThirdwebProvider>
+    </ThirdwebWeb3Provider>
   );
 };
 ```
 
-<br>
+### **Use Custom Hooks**
 
-## Connect Wallet & Web3 Setup
+You can build your own connect wallet button with our `useWeb3` and `useSwitchNetwork` hooks.
 
-Currently, we provide you with components to easily integrate web3 into your app and setup an app wide context without having to deal with the complexity of lower level web3 configuration.
-
-You can use our fully configured `ConnectWallet` component to handle all web3 connection and integration, including wallet connection and network switching. This is the easiest way to use the Thirdweb Component Library.
-
-### **Use Connect Wallet**
-
-Using our `ConnectWallet` component is the easiest way to integrate web3 into your app, complete with network switching, wallet connection, and everything else you need. Adding our connect wallet button is as easy as the following:
+You can see how these hooks are used in the following example.
 
 ```javascript
-import React from "react";
-import { ConnectWallet } from "@3rdweb/react";
+import React, { useState } from "react"
+import { useWeb3, useSwitchNetwork } from "@3rdweb/hooks"
 
-const Connect = () => {
-  return <ConnectWallet />;
-};
+const CustomConnect = () => {
+  const { address, chainId, connectWallet, disconnectWallet } = useWeb3();
+  const { switchNetwork } = useSwitchNetwork();
+  const [email, setEmail] = useState("");
+
+  return (
+    <>
+      Address: {address}
+      <br />
+      Chain ID: {chainId}
+      <br />
+
+      {address && (
+        <button onClick={disconnectWallet}>
+          Disconnect
+        </button>
+      )}
+
+      <input value={email} onChange={e => setEmail(e.target.value)} />
+      <button
+        onClick={() => connectWallet("magic", {
+          email
+        })}
+      >
+        Connect Magic Link
+      </button>
+
+      <button onClick={() => connectWallet("injected")}>
+        Connect MetaMask
+      </button>
+      <button onClick={() => connectWallet("walletconnect")}>
+        Connect Wallet Connect
+      </button>
+      <button onClick={() => connectWallet("walletlink")}>
+        Connect Coinbase Wallet
+      </button>
+    <>
+  )
+}
 ```
 
-You can place this button anywhere in your app and it will display a wallet connection that displays connected chain, wallet address, and balance information as well as a fully-featured connection manager modal.
-
-For a fully functional setup using our `ConnectWallet` button, you can checkout our [NextJS example connect page](https://github.com/nftlabs/ui/blob/main/examples/next/pages/connect.tsx).
+For a fully functional setup using our custom hooks, you can checkout our [NextJS example hooks page](https://github.com/nftlabs/ui/blob/main/examples/next/pages/hooks.tsx).
 
 <br>
 
