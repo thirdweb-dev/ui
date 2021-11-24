@@ -74,8 +74,10 @@ You can see how these hooks are used in the following example.
 import React, { useState } from "react"
 import { useWeb3, useSwitchNetwork } from "@3rdweb/hooks"
 
+const supportedChainIds = [1, 4, 137];
+
 const CustomConnect = () => {
-  const { address, chainId, connectWallet, disconnectWallet } = useWeb3();
+  const { address, chainId, connectWallet, disconnectWallet, getNetworkMetadata } = useWeb3();
   const { switchNetwork } = useSwitchNetwork();
   const [email, setEmail] = useState("");
 
@@ -91,6 +93,13 @@ const CustomConnect = () => {
           Disconnect
         </button>
       )}
+
+      <p>Switch Network</p>
+      {supportChainIds.map((cId) => (
+        <button onClick={() => switchNetwork(cId)}>
+          {getNetworkMetadata(cId).chainName}
+        </button>
+      ))}
 
       <input value={email} onChange={e => setEmail(e.target.value)} />
       <button
