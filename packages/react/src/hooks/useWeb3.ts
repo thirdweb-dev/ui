@@ -2,7 +2,9 @@ import { ExternalProvider, Web3Provider } from "@ethersproject/providers";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { formatEther } from "@ethersproject/units";
+import { BigNumber } from "@ethersproject/bignumber";
 import {
   ConnectorType,
   NetworkMetadata,
@@ -10,9 +12,15 @@ import {
 } from "../components/providers/Web3Provider";
 import { useConnectWallet } from "./useConnectWallet";
 
+interface Balance {
+  value?: BigNumber;
+  formatted: string;
+}
+
 export interface Web3ContextInterface {
   error?: Error;
   chainId?: number;
+  balance?: Balance;
   provider?: Web3Provider;
   connector?: AbstractConnector & {
     [key: string]: any;
@@ -75,6 +83,8 @@ export function useWeb3(): Web3ContextInterface {
   const { library, connector, account, error, chainId, deactivate } =
     web3Context;
 
+  const [balance, setBalance] = useState<Balance>();
+
   useEffect(() => {
     if (error?.message.includes("The user rejected the request.")) {
       deactivate();
@@ -93,6 +103,24 @@ export function useWeb3(): Web3ContextInterface {
       checkInjected();
     }, 500);
   }, [connect]);
+
+  useEffect(() => {
+    const getBalance = async () => {
+      if (account) {
+        const accountBalance = await library?.getBalance(account);
+        setBalance({
+          value: accountBalance,
+          formatted: formatEther(accountBalance || 0).slice(0, 6)
+        });
+      } else {
+        setBalance({
+          formatted: "0.0"
+        });
+      }
+    };
+
+    getBalance();
+  }, [library, account]);
 
   const activeProvider = useMemo(() => {
     return library?.provider;
@@ -138,6 +166,7 @@ export function useWeb3(): Web3ContextInterface {
       error,
       chainId,
       connector,
+      balance,
       provider: library,
       activeProvider,
       // Force no null account
@@ -150,6 +179,7 @@ export function useWeb3(): Web3ContextInterface {
     [
       account,
       chainId,
+      balance,
       connector,
       activeProvider,
       connect,

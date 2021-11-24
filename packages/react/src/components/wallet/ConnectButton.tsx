@@ -8,8 +8,7 @@ import {
   Text,
   Tooltip,
 } from "@chakra-ui/react";
-import { formatEther } from "@ethersproject/units";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import { IoWalletOutline } from "react-icons/io5";
 import { useSwitchNetwork } from "../../hooks/useSwitchNetwork";
@@ -20,22 +19,8 @@ export const ConnectButton: React.FC<{
   onOpen: () => void;
   isOpen: boolean;
 }> = ({ onOpen, isOpen, ...props }) => {
-  const { address, provider, chainId, error, getNetworkMetadata } = useWeb3();
+  const { address, balance, chainId, error, getNetworkMetadata } = useWeb3();
   const { switchError } = useSwitchNetwork();
-  const [renderBalance, setRenderBalance] = useState("");
-
-  useEffect(() => {
-    const getBalance = async () => {
-      if (address) {
-        const balance = await provider?.getBalance(address);
-        setRenderBalance(formatEther(balance || 0).slice(0, 6));
-      } else {
-        setRenderBalance("0.0");
-      }
-    };
-
-    getBalance();
-  }, [provider, address]);
 
   const networkMetadata = useMemo(() => {
     if (chainId) {
@@ -103,7 +88,7 @@ export const ConnectButton: React.FC<{
             color="#0098EE"
             lineHeight="14px"
           >
-            {renderBalance}
+            {balance?.formatted}
             {networkMetadata && networkMetadata.symbol.length > 2 && <br />}
             {networkMetadata?.symbol}
           </Text>
