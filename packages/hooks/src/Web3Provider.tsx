@@ -84,12 +84,14 @@ export function useThirdwebContext(): ThirdwebContext {
   return context;
 }
 
-export const ThirdwebWeb3Provider: React.FC<{
+export interface ThirdwebWeb3ProviderProps {
   connectors: ThirdwebContext["connectors"];
   supportedChainIds: ThirdwebContext["supportedChainIds"];
   networkMetadata?: ThirdwebContext["networkMetadata"];
   chainAddConfig?: ThirdwebContext["chainAddConfig"];
-}> = ({
+}
+
+export const ThirdwebWeb3Provider: React.FC<ThirdwebWeb3ProviderProps> = ({
   connectors,
   supportedChainIds,
   networkMetadata,

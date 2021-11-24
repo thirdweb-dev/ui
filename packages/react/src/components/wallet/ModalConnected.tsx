@@ -1,3 +1,4 @@
+import { useSwitchNetwork, useThirdwebContext, useWeb3 } from "@3rdweb/hooks";
 import {
   Alert,
   AlertIcon,
@@ -7,11 +8,9 @@ import {
   Heading,
   Image,
   Stack,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { useSwitchNetwork, useWeb3 } from "../..";
-import { useThirdwebContext } from "../providers/Web3Provider";
 import { AddressCopyButton } from "./AddressCopyButton";
 
 export const ModalConnected: React.FC<{
@@ -31,27 +30,29 @@ export const ModalConnected: React.FC<{
 
   return (
     <Flex direction="column">
-      {!disableNetworkSwitching && !connector?.magic && !connector?.walletConnectProvider && (
-        <>
-          <Flex direction="column">
-            <Heading as="h4" size="sm" fontWeight="600" mb="12px">
-              Switch network
-            </Heading>
-            {supportedChainIds
-              .filter((cId) => !getNetworkMetadata(cId).isTestnet)
-              .map((cId, index) => (
-                <Network key={index} index={index} cId={cId} />
-              ))}
-            {supportedChainIds
-              .filter((cId) => getNetworkMetadata(cId).isTestnet)
-              .map((cId, index) => (
-                <Network key={index} index={index} cId={cId} />
-              ))}
-          </Flex>
+      {!disableNetworkSwitching &&
+        !connector?.magic &&
+        !connector?.walletConnectProvider && (
+          <>
+            <Flex direction="column">
+              <Heading as="h4" size="sm" fontWeight="600" mb="12px">
+                Switch network
+              </Heading>
+              {supportedChainIds
+                .filter((cId) => !getNetworkMetadata(cId).isTestnet)
+                .map((cId, index) => (
+                  <Network key={index} index={index} cId={cId} />
+                ))}
+              {supportedChainIds
+                .filter((cId) => getNetworkMetadata(cId).isTestnet)
+                .map((cId, index) => (
+                  <Network key={index} index={index} cId={cId} />
+                ))}
+            </Flex>
 
-          <Divider mt="32px" mb="24px" width="md" alignSelf="center" />
-        </>
-      )}
+            <Divider mt="32px" mb="24px" width="md" alignSelf="center" />
+          </>
+        )}
 
       {disableNetworkSwitching && (
         <>

@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@3rdweb/react": "^1.0.0",
+    "@3rdweb/react": "*",
+    "@3rdweb/hooks": "*",
     "@chakra-ui/react": "^1.7.0",
     "@preconstruct/next": "^3.0.1",
     "next": "^12.0.3",

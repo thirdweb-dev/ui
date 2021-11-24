@@ -5,7 +5,7 @@ import {
   ConnectorOptions,
   ConnectorType,
   useThirdwebContext,
-} from "../../react/src/components/providers/Web3Provider";
+} from "./Web3Provider";
 
 export type ConnectorActivateOptions = {
   // MetaMask

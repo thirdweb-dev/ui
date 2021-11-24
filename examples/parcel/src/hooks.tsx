@@ -1,4 +1,4 @@
-import { useSwitchNetwork, useWeb3 } from "@3rdweb/react";
+import { useSwitchNetwork, useWeb3 } from "@3rdweb/hooks";
 import { AspectRatio, Button, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
 

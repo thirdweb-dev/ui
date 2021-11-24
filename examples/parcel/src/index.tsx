@@ -1,33 +1,30 @@
-import { ThirdwebThemeProvider, ThirdwebWeb3Provider } from "@3rdweb/react";
+import { ThirdwebProvider } from "@3rdweb/react";
 import React from "react";
 import ReactDOM from "react-dom";
 import { ExampleApp } from "./App";
 
+const supportedChainIds = [1, 4, 137, 250, 43114, 80001];
 const connectors = {
-  injected: {
-    supportedChainIds: [1],
-  },
+  injected: {},
   magic: {
     apiKey: "pk_live_712C1E6230EA31BC",
     chainId: 1,
   },
-  walletconnect: {
-    supportedChainIds: [1],
-  },
+  walletconnect: {},
   walletlink: {
     appName: "thirdweb - demo",
     url: "https://thirdweb.com",
     darkMode: false,
-    supportedChainIds: [1],
   },
 };
 
 const app = document.getElementById("app");
 ReactDOM.render(
-  <ThirdwebWeb3Provider connectors={connectors}>
-    <ThirdwebThemeProvider>
-      <ExampleApp />
-    </ThirdwebThemeProvider>
-  </ThirdwebWeb3Provider>,
+  <ThirdwebProvider
+    supportedChainIds={supportedChainIds}
+    connectors={connectors}
+  >
+    <ExampleApp />
+  </ThirdwebProvider>,
   app,
 );

@@ -1,3 +1,2 @@
-export * from "./components/providers";
+export * from "./components/providers/ThirdwebProvider";
 export * from "./components/wallet";
-export * from "../../hooks/src";

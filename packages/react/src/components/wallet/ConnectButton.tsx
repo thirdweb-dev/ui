@@ -1,3 +1,4 @@
+import { useSwitchNetwork, useWeb3 } from "@3rdweb/hooks";
 import { Icon } from "@chakra-ui/icons";
 import {
   Button,
@@ -11,8 +12,6 @@ import {
 import React, { useMemo } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import { IoWalletOutline } from "react-icons/io5";
-import { useSwitchNetwork } from "../../../../hooks/src/useSwitchNetwork";
-import { useWeb3 } from "../../../../hooks/src/useWeb3";
 import { shortenAddress } from "../../utils/shortenAddress";
 
 export const ConnectButton: React.FC<{

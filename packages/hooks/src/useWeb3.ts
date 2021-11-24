@@ -1,16 +1,16 @@
+import { BigNumber } from "@ethersproject/bignumber";
 import { ExternalProvider, Web3Provider } from "@ethersproject/providers";
+import { formatEther } from "@ethersproject/units";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { formatEther } from "@ethersproject/units";
-import { BigNumber } from "@ethersproject/bignumber";
+import { useConnectWallet } from "./useConnectWallet";
 import {
   ConnectorType,
   NetworkMetadata,
   useThirdwebContext,
-} from "../../react/src/components/providers/Web3Provider";
-import { useConnectWallet } from "./useConnectWallet";
+} from "./Web3Provider";
 
 interface Balance {
   value?: BigNumber;
@@ -110,11 +110,11 @@ export function useWeb3(): Web3ContextInterface {
         const accountBalance = await library?.getBalance(account);
         setBalance({
           value: accountBalance,
-          formatted: formatEther(accountBalance || 0).slice(0, 6)
+          formatted: formatEther(accountBalance || 0).slice(0, 6),
         });
       } else {
         setBalance({
-          formatted: "0.0"
+          formatted: "0.0",
         });
       }
     };

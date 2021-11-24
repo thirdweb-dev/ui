@@ -1,7 +1,7 @@
 import { Web3Provider } from "@ethersproject/providers";
 import { useWeb3React } from "@web3-react/core";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useThirdwebContext } from "../../react/src/components/providers/Web3Provider";
+import { useThirdwebContext } from "./Web3Provider";
 
 const defaultChainAddConfig = {
   1: {
@@ -12,9 +12,7 @@ const defaultChainAddConfig = {
       symbol: "ETH",
       decimals: 18,
     },
-    rpcUrls: [
-      "https://main-light.eth.linkpool.io/"
-    ],
+    rpcUrls: ["https://main-light.eth.linkpool.io/"],
   },
   4: {
     chainId: `0x${Number(4).toString(16)}`,
@@ -24,9 +22,7 @@ const defaultChainAddConfig = {
       symbol: "ETH",
       decimals: 18,
     },
-    rpcUrls: [
-      "https://rinkeby-light.eth.linkpool.io/",
-    ],
+    rpcUrls: ["https://rinkeby-light.eth.linkpool.io/"],
   },
   137: {
     chainId: `0x${Number(137).toString(16)}`,
@@ -36,12 +32,8 @@ const defaultChainAddConfig = {
       symbol: "MATIC",
       decimals: 18,
     },
-    rpcUrls: [
-      "https://polygon-rpc.com",
-    ],
-    blockExplorerUrls: [
-      "https://polygonscan.com"
-    ],
+    rpcUrls: ["https://polygon-rpc.com"],
+    blockExplorerUrls: ["https://polygonscan.com"],
   },
   250: {
     chainId: `0x${Number(250).toString(16)}`,
@@ -51,12 +43,8 @@ const defaultChainAddConfig = {
       symbol: "FTM",
       decimals: 18,
     },
-    rpcUrls: [
-      "https://rpc.ftm.tools"
-    ],
-    blockExplorerUrls: [
-      "https://ftmscan.com"
-    ],
+    rpcUrls: ["https://rpc.ftm.tools"],
+    blockExplorerUrls: ["https://ftmscan.com"],
   },
   43114: {
     chainId: `0x${Number(43114).toString(16)}`,
@@ -66,12 +54,8 @@ const defaultChainAddConfig = {
       symbol: "AVAX",
       decimals: 18,
     },
-    rpcUrls: [
-      "https://api.avax.network/ext/bc/C/rpc",
-    ],
-    blockExplorerUrls: [
-      "https://cchain.explorer.avax.network",
-    ],
+    rpcUrls: ["https://api.avax.network/ext/bc/C/rpc"],
+    blockExplorerUrls: ["https://cchain.explorer.avax.network"],
   },
   80001: {
     chainId: `0x${Number(80001).toString(16)}`,
@@ -85,9 +69,7 @@ const defaultChainAddConfig = {
       "https://rpc-mumbai.maticvigil.com",
       "https://rpc-mumbai.matic.today",
     ],
-    blockExplorerUrls: [
-      "https://mumbai.polygonscan.com"
-    ],
+    blockExplorerUrls: ["https://mumbai.polygonscan.com"],
   },
 };
 

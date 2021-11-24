@@ -1,3 +1,4 @@
+import { useWeb3 } from "@3rdweb/hooks";
 import {
   AspectRatio,
   Button,
@@ -11,7 +12,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { useWeb3 } from "../..";
 
 export const ModalDisconnected: React.FC = () => {
   const [email, setEmail] = useState("");

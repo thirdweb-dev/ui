@@ -1,6 +1,6 @@
 {
   "name": "@3rdweb/hooks",
-  "version": "1.0.0",
+  "version": "1.1.7",
   "main": "dist/3rdweb-hooks.cjs.js",
   "module": "dist/3rdweb-hooks.esm.js",
   "browser": {

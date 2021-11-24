@@ -1,3 +1,4 @@
+import { useWeb3 } from "@3rdweb/hooks";
 import { ButtonProps } from "@chakra-ui/button";
 import {
   Flex,
@@ -10,7 +11,6 @@ import {
   usePrevious,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import { useWeb3 } from "../../../../hooks/src";
 import { ConnectButton } from "./ConnectButton";
 import { ModalConnected } from "./ModalConnected";
 import { ModalDisconnected } from "./ModalDisconnected";
