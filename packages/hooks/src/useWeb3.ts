@@ -37,14 +37,14 @@ const defaultNetworkMetadata = {
   1: {
     chainName: "Ethereum",
     iconUrl:
-      "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
+      "https://gateway.pinata.cloud/ipfs/QmQy3qKSfhxgE4xs9YJM6bG5f5cTJi9wXVFgroqPTbF2T9",
     symbol: "ETH",
     isTestnet: false,
   },
   4: {
     chainName: "Rinkeby",
     iconUrl:
-      "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
+      "https://gateway.pinata.cloud/ipfs/QmQy3qKSfhxgE4xs9YJM6bG5f5cTJi9wXVFgroqPTbF2T9",
     symbol: "ETH",
     isTestnet: true,
   },
