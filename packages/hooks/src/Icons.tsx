@@ -10,6 +10,8 @@ export const Ethereum: React.FC = () => {
       shapeRendering="geometricPrecision"
       textRendering="geometricPrecision"
       viewBox="0 0 784.37 1277.39"
+      width="36"
+      height="36"
     >
       <g>
         <g fillRule="nonzero">
@@ -45,18 +47,22 @@ export const Ethereum: React.FC = () => {
 
 export const Polygon: React.FC = () => {
   return (
-    <svg
-      x="0"
-      y="0"
-      enableBackground="new 0 0 38.4 33.5"
-      version="1.1"
-      viewBox="0 0 38.4 33.5"
-    >
-      <path
-        d="M29 10.2c-.7-.4-1.6-.4-2.4 0L21 13.5l-3.8 2.1-5.5 3.3c-.7.4-1.6.4-2.4 0L5 16.3c-.7-.4-1.2-1.2-1.2-2.1v-5c0-.8.4-1.6 1.2-2.1l4.3-2.5c.7-.4 1.6-.4 2.4 0L16 7.2c.7.4 1.2 1.2 1.2 2.1v3.3l3.8-2.2V7c0-.8-.4-1.6-1.2-2.1l-8-4.7c-.7-.4-1.6-.4-2.4 0L1.2 5C.4 5.4 0 6.2 0 7v9.4c0 .8.4 1.6 1.2 2.1l8.1 4.7c.7.4 1.6.4 2.4 0l5.5-3.2 3.8-2.2 5.5-3.2c.7-.4 1.6-.4 2.4 0l4.3 2.5c.7.4 1.2 1.2 1.2 2.1v5c0 .8-.4 1.6-1.2 2.1L29 28.8c-.7.4-1.6.4-2.4 0l-4.3-2.5c-.7-.4-1.2-1.2-1.2-2.1V21l-3.8 2.2v3.3c0 .8.4 1.6 1.2 2.1l8.1 4.7c.7.4 1.6.4 2.4 0l8.1-4.7c.7-.4 1.2-1.2 1.2-2.1V17c0-.8-.4-1.6-1.2-2.1L29 10.2z"
-        style={{ fill: "#8247E5" }}
-      />
-    </svg>
+    <div style={{ width: "36px", height: "36px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <svg
+        x="0"
+        y="0"
+        enableBackground="new 0 0 38.4 33.5"
+        version="1.1"
+        viewBox="0 0 38.4 33.5"
+        width="28"
+        height="28"
+      >
+        <path
+          d="M29 10.2c-.7-.4-1.6-.4-2.4 0L21 13.5l-3.8 2.1-5.5 3.3c-.7.4-1.6.4-2.4 0L5 16.3c-.7-.4-1.2-1.2-1.2-2.1v-5c0-.8.4-1.6 1.2-2.1l4.3-2.5c.7-.4 1.6-.4 2.4 0L16 7.2c.7.4 1.2 1.2 1.2 2.1v3.3l3.8-2.2V7c0-.8-.4-1.6-1.2-2.1l-8-4.7c-.7-.4-1.6-.4-2.4 0L1.2 5C.4 5.4 0 6.2 0 7v9.4c0 .8.4 1.6 1.2 2.1l8.1 4.7c.7.4 1.6.4 2.4 0l5.5-3.2 3.8-2.2 5.5-3.2c.7-.4 1.6-.4 2.4 0l4.3 2.5c.7.4 1.2 1.2 1.2 2.1v5c0 .8-.4 1.6-1.2 2.1L29 28.8c-.7.4-1.6.4-2.4 0l-4.3-2.5c-.7-.4-1.2-1.2-1.2-2.1V21l-3.8 2.2v3.3c0 .8.4 1.6 1.2 2.1l8.1 4.7c.7.4 1.6.4 2.4 0l8.1-4.7c.7-.4 1.2-1.2 1.2-2.1V17c0-.8-.4-1.6-1.2-2.1L29 10.2z"
+          style={{ fill: "#8247E5" }}
+        />
+      </svg>
+    </div>
   );
 };
 
@@ -70,6 +76,8 @@ export const Avalanche: React.FC = () => {
       version="1.1"
       viewBox="0 0 254 254"
       xmlSpace="preserve"
+      width="36"
+      height="36"
     >
       <circle cx="127" cy="127" r="127" style={{
         fillRule: "evenodd",
@@ -86,7 +94,7 @@ export const Avalanche: React.FC = () => {
 
 export const Fantom: React.FC = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="36" height="36">
       <defs>
         <mask width="93.1" height="20" x="10" y="6" maskUnits="userSpaceOnUse">
           <path d="M10 6h93.1v20H10z" style={{
