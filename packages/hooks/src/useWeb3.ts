@@ -5,6 +5,7 @@ import { AbstractConnector } from "@web3-react/abstract-connector";
 import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { Avalanche, Ethereum, Fantom, Polygon } from "./Icons";
 import { useConnectWallet } from "./useConnectWallet";
 import {
   ConnectorType,
@@ -37,41 +38,37 @@ export interface Web3ContextInterface {
 const defaultNetworkMetadata: Record<number, NetworkMetadata> = {
   1: {
     chainName: "Ethereum",
-    icon:
-      "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
+    icon: Ethereum,
     symbol: "ETH",
     isTestnet: false,
   },
   4: {
     chainName: "Rinkeby",
-    icon:
-      "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
+    icon: Ethereum,
     symbol: "ETH",
     isTestnet: true,
   },
   137: {
     chainName: "Polygon",
-    icon: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
+    icon: Polygon,
     symbol: "MATIC",
     isTestnet: false,
   },
   250: {
     chainName: "Fantom",
-    icon:
-      "https://icodrops.com/wp-content/uploads/2018/04/teryT6Hw_400x400.jpg",
+    icon: Fantom,
     symbol: "FTM",
     isTestnet: false,
   },
   43114: {
     chainName: "Avalanche",
-    icon:
-      "https://assets.website-files.com/6059b554e81c705f9dd2dd32/60ec6a944b52e3e96e16af68_Avalanche_Square_Red_Circle.png",
+    icon: Avalanche,
     symbol: "AVAX",
     isTestnet: false,
   },
   80001: {
     chainName: "Mumbai",
-    icon: "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
+    icon: Polygon,
     symbol: "MATIC",
     isTestnet: true,
   },
