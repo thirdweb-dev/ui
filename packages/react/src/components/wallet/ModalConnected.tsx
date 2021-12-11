@@ -133,12 +133,16 @@ const Network: React.FC<{
         }}
       >
         <Flex align="center">
-          <Image
-            src={getNetworkMetadata(cId).iconUrl}
-            height="36px"
-            width="36px"
-            borderRadius="25px"
-          />
+          {typeof getNetworkMetadata(cId).icon === "string" ? (
+            <Image
+              src={getNetworkMetadata(cId).icon as string}
+              height="36px"
+              width="36px"
+              borderRadius="25px"
+            />
+          ) :
+            (getNetworkMetadata(cId).icon as React.FC)({})
+          }
           <Text ml="12px" fontWeight="medium" fontSize="14px">
             {getNetworkMetadata(cId).chainName}
           </Text>
