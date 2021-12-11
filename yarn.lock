@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@3rdweb/chain-icons@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@3rdweb/chain-icons/-/chain-icons-1.0.1.tgz#00ade9274dc87488c59248350981f300d4a9d912"
+  integrity sha512-573b0CmKwi9Vf8ETRjNX8VzSqc9s1cwMu5pw7yUI2YTuBimgd15Hu/prnfyZ5efrIZUPDCJVaqNAc6v3fuGmzA==
+
 "@babel/code-frame@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"

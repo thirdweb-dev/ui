@@ -5,7 +5,7 @@ import { AbstractConnector } from "@web3-react/abstract-connector";
 import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Avalanche, Ethereum, Fantom, Polygon } from "./Icons";
+import { Avalanche, Ethereum, Fantom, Polygon } from "@3rdweb/chain-icons";
 import { useConnectWallet } from "./useConnectWallet";
 import {
   ConnectorType,
@@ -33,7 +33,6 @@ export interface Web3ContextInterface {
   disconnectWallet: () => void;
   getNetworkMetadata: (chainId: number) => NetworkMetadata;
 }
-
 
 const defaultNetworkMetadata: Record<number, NetworkMetadata> = {
   1: {

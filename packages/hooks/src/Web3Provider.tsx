@@ -49,7 +49,7 @@ export interface AddEthereumChainParameter {
 
 export interface NetworkMetadata {
   chainName: string;
-  icon: string | React.FC;
+  icon: string | React.ComponentType;
   symbol: string;
   isTestnet: boolean;
 }
