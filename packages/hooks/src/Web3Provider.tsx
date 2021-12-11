@@ -49,12 +49,12 @@ export interface AddEthereumChainParameter {
 
 export interface NetworkMetadata {
   chainName: string;
-  iconUrl: string;
+  icon: string | React.FC;
   symbol: string;
   isTestnet: boolean;
 }
 
-export interface ThirdwebContext {
+export interface IThirdwebContext {
   _inProvider: boolean;
   readonly connectors: Partial<ConnectorOptions>;
   readonly supportedChainIds: number[];
@@ -66,13 +66,13 @@ function getLibrary(provider: any): Web3Provider {
   return new Web3Provider(provider, "any");
 }
 
-const ThirdwebContext = createContext<ThirdwebContext>({
+const ThirdwebContext = createContext<IThirdwebContext>({
   _inProvider: false,
   connectors: {},
   supportedChainIds: [],
 });
 
-export function useThirdwebContext(): ThirdwebContext {
+export function useThirdwebContext(): IThirdwebContext {
   const context = useContext(ThirdwebContext);
   invariant(
     context._inProvider,
@@ -85,10 +85,10 @@ export function useThirdwebContext(): ThirdwebContext {
 }
 
 export interface ThirdwebWeb3ProviderProps {
-  connectors: ThirdwebContext["connectors"];
-  supportedChainIds: ThirdwebContext["supportedChainIds"];
-  networkMetadata?: ThirdwebContext["networkMetadata"];
-  chainAddConfig?: ThirdwebContext["chainAddConfig"];
+  connectors: IThirdwebContext["connectors"];
+  supportedChainIds: IThirdwebContext["supportedChainIds"];
+  networkMetadata?: IThirdwebContext["networkMetadata"];
+  chainAddConfig?: IThirdwebContext["chainAddConfig"];
 }
 
 export const ThirdwebWeb3Provider: React.FC<ThirdwebWeb3ProviderProps> = ({

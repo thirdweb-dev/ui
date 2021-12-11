@@ -33,10 +33,10 @@ export interface Web3ContextInterface {
   getNetworkMetadata: (chainId: number) => NetworkMetadata;
 }
 
-const defaultNetworkMetadata = {
+const defaultNetworkMetadata: NetworkMetadata = {
   1: {
     chainName: "Ethereum",
-    iconUrl:
+    icon:
       "https://ethereum.org/static/4b5288012dc4b32ae7ff21fccac98de1/31987/eth-diamond-black-gray.png",
     symbol: "ETH",
     isTestnet: false,
