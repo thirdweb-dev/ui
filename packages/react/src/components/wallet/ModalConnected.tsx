@@ -11,6 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import { NetworkIcon } from "../shared/NetworkIcon";
 import { AddressCopyButton } from "./AddressCopyButton";
 
 export const ModalConnected: React.FC<{
@@ -133,16 +134,7 @@ const Network: React.FC<{
         }}
       >
         <Flex align="center">
-          {typeof getNetworkMetadata(cId).icon === "string" ? (
-            <Image
-              src={getNetworkMetadata(cId).icon as string}
-              height="36px"
-              width="36px"
-              borderRadius="25px"
-            />
-          ) :
-            (getNetworkMetadata(cId).icon as React.FC)({})
-          }
+          <NetworkIcon chainId={cId} />
           <Text ml="12px" fontWeight="medium" fontSize="14px">
             {getNetworkMetadata(cId).chainName}
           </Text>

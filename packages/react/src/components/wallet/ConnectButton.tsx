@@ -12,6 +12,7 @@ import {
 import React, { useMemo } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import { IoWalletOutline } from "react-icons/io5";
+import { NetworkIcon } from "../shared/NetworkIcon";
 import { shortenAddress } from "../../utils/shortenAddress";
 
 export const ConnectButton: React.FC<{
@@ -58,14 +59,7 @@ export const ConnectButton: React.FC<{
           {...props}
         >
           <Stack flexShrink={0} direction="row" align="center" pr={3}>
-            {networkMetadata?.iconUrl && (
-              <Image
-                height="36px"
-                width="36px"
-                borderRadius="25px"
-                src={networkMetadata.iconUrl}
-              />
-            )}
+            <NetworkIcon chainId={chainId as number} />
             <Stack textAlign="left" justify="flex-start" spacing={0}>
               <Text size="label.md" color="heading" lineHeight={1}>
                 {shortenAddress(address)}
