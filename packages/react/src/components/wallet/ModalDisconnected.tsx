@@ -92,7 +92,6 @@ export const ModalDisconnected: React.FC = () => {
             typeof window !== "undefined" &&
             "ethereum" in window && (
               <Button
-                display={{ base: "none", sm: "flex" }}
                 size="lg"
                 variant="outline"
                 isFullWidth
