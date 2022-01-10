@@ -1,55 +1,53 @@
 {
-  "name": "thirdweb-ui",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Jonas Daniels <jonas.daniels@outlook.com>",
-  "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nftlabs/ui"
-  },
+  "name": "turborepo-design-system",
+  "version": "0.0.0",
   "private": true,
-  "homepage": "https://thirdweb.com/",
   "workspaces": [
     "packages/*",
-    "examples/*"
+    "apps/*"
   ],
-  "preconstruct": {
-    "packages": [
-      "packages/*"
-    ]
-  },
   "scripts": {
-    "postinstall": "preconstruct dev",
-    "fix": "preconstruct fix",
-    "build": "preconstruct build",
-    "dev": "preconstruct dev",
-    "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc",
-    "fix:pkgs": "manypkg fix"
+    "build": "turbo run build",
+    "dev": "turbo run dev --no-cache --parallel --continue",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "dependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.0",
-    "@babel/preset-react": "^7.16.0",
-    "@babel/preset-typescript": "^7.16.0",
-    "@manypkg/cli": "^0.19.1",
-    "@parcel/babel-preset-env": "^2.0.1",
-    "@preconstruct/cli": "^2.1.5",
-    "@typescript-eslint/eslint-plugin": "^5.3.1",
-    "@typescript-eslint/parser": "^5.3.1",
-    "eslint": "^7",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-inclusive-language": "^2.1.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "eslint-plugin-tsdoc": "^0.2.14",
-    "prettier": "^2.4.1",
-    "typescript": "^4.4.4"
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.4.2",
+    "@changesets/cli": "^2.19.0",
+    "@types/jest": "^27.4.0",
+    "eslint": "7.32.0",
+    "prettier": "^2.5.1",
+    "turbo": "latest"
   },
-  "resolutions": {
-    "glob-parent": "^6.0.2",
-    "ansi-regex": "^5.0.1",
-    "json-schema": "^0.4.0"
+  "turbo": {
+    "pipeline": {
+      "build": {
+        "outputs": [
+          "dist/**",
+          ".next/**"
+        ],
+        "dependsOn": [
+          "^build"
+        ]
+      },
+      "test": {
+        "outputs": [
+          "coverage/**"
+        ],
+        "dependsOn": []
+      },
+      "lint": {
+        "outputs": []
+      },
+      "dev": {
+        "cache": false
+      },
+      "clean": {
+        "cache": false
+      }
+    }
   }
 }
