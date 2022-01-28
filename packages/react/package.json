@@ -1,6 +1,6 @@
 {
   "name": "@3rdweb/react",
-  "version": "1.8.1",
+  "version": "1.9.0",
   "main": "dist/3rdweb-react.cjs.js",
   "module": "dist/3rdweb-react.esm.js",
   "browser": {
