@@ -1,14 +1,6 @@
 import { useSwitchNetwork, useWeb3 } from "@3rdweb/hooks";
 import { Icon } from "@chakra-ui/icons";
-import {
-  Button,
-  Divider,
-  Flex,
-  Image,
-  Stack,
-  Text,
-  Tooltip,
-} from "@chakra-ui/react";
+import { Button, Divider, Flex, Stack, Text, Tooltip } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import { IoWalletOutline } from "react-icons/io5";
@@ -61,7 +53,7 @@ export const ConnectButton: React.FC<{
           <Stack flexShrink={0} direction="row" align="center" pr={3}>
             <NetworkIcon chainId={chainId as number} />
             <Stack textAlign="left" justify="flex-start" spacing={0}>
-              <Text size="label.md" color="heading" lineHeight={1}>
+              <Text color="heading" lineHeight={1}>
                 {shortenAddress(address)}
               </Text>
               <Text color="gray.500" fontSize="12px" lineHeight={1}>

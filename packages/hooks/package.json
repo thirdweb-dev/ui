@@ -1,6 +1,6 @@
 {
   "name": "@3rdweb/hooks",
-  "version": "1.9.0",
+  "version": "1.8.0",
   "main": "dist/3rdweb-hooks.cjs.js",
   "module": "dist/3rdweb-hooks.esm.js",
   "private": false,
@@ -34,14 +34,14 @@
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
     "@web3-react/magic-connector": "^6.1.9",
-    "@web3-react/walletconnect-connector": "^6.2.8",
+    "@web3-react/walletconnect-connector": "6.2.8",
     "@web3-react/walletlink-connector": "^6.2.8",
     "regenerator-runtime": "^0.13.9",
     "tiny-invariant": "^1.2.0"
   },
   "resolutions": {
-    "@web3-react/walletconnect-connector": "6.2.8",
     "walletlink": "^2.4.5",
-    "@magic-sdk/provider": "^7.0.0"
+    "@magic-sdk/provider": "^7.0.0",
+    "@walletconnect/ethereum-provider": "1.6.0"
   }
 }
