@@ -37,7 +37,7 @@ export const SUPPORTED_CHAIN_IDS = [
   ChainId.AvalancheFujiTestnet,
 ];
 
-export const ChainIdToRPC: Record<number, string> = {
+export const ChainIdToRPC: Partial<Record<ChainId, string>> = {
   [ChainId.Mainnet]: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
   [ChainId.Rinkeby]: "https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
   [ChainId.Goerli]: "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
@@ -47,7 +47,7 @@ export const ChainIdToRPC: Record<number, string> = {
   [ChainId.Mumbai]: "https://rpc-mumbai.maticvigil.com",
 };
 
-export const ChainIdToNativeSymbol: Record<number, string> = {
+export const ChainIdToNativeSymbol: Partial<Record<ChainId, string>> = {
   [ChainId.Mainnet]: "ETH",
   [ChainId.Rinkeby]: "ETH",
   [ChainId.Goerli]: "ETH",
@@ -57,7 +57,7 @@ export const ChainIdToNativeSymbol: Record<number, string> = {
   [ChainId.Mumbai]: "MATIC",
 };
 
-export const ChainIdToName: Record<number, string> = {
+export const ChainIdToName: Partial<Record<ChainId, string>> = {
   [ChainId.Mainnet]: "Mainnet",
   [ChainId.Rinkeby]: "Rinkeby",
   [ChainId.Goerli]: "Goerli",
