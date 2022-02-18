@@ -19,6 +19,7 @@ interface Balance {
 }
 
 export interface Web3ContextInterface {
+  loading: boolean;
   error?: Error;
   chainId?: number;
   balance?: Balance;
@@ -82,6 +83,16 @@ export function useWeb3(): Web3ContextInterface {
 
   const [balance, setBalance] = useState<Balance>();
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    if (!web3Context) {
+      return;
+    }
+    setLoading(false);
+  }, [web3Context]);
+
   useEffect(() => {
     if (error?.message.includes("The user rejected the request.")) {
       deactivate();
@@ -89,11 +100,13 @@ export function useWeb3(): Web3ContextInterface {
   }, [error, deactivate]);
 
   useEffect(() => {
+    setLoading(true);
     const checkInjected = async () => {
       const injected = new InjectedConnector({});
       if (await injected.isAuthorized()) {
-        connect("injected");
+        await connect("injected");
       }
+      setLoading(false);
     };
 
     setTimeout(() => {
@@ -172,6 +185,7 @@ export function useWeb3(): Web3ContextInterface {
       connectWallet: connect,
       disconnectWallet,
       getNetworkMetadata,
+      loading,
     }),
     [
       account,
@@ -185,6 +199,7 @@ export function useWeb3(): Web3ContextInterface {
       getNetworkMetadata,
       error,
       library,
+      loading,
     ],
   );
 }
