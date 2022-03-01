@@ -1,4 +1,8 @@
-# Thirdweb UI Components Monorepo
+# Thirdweb UI Components
+
+> This is an **legacy** version of the Thirdweb UI Components.
+
+> [Looking for version 2? Click here!](https://github.com/thirdweb-dev/react)
 
 ## Resources
 
